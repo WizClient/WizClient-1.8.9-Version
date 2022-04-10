@@ -387,28 +387,56 @@ public class ItemRenderer
                 else if (abstractclientplayer.getItemInUseCount() > 0)
                 {
                     EnumAction enumaction = this.itemToRender.getItemUseAction();
+                    
+                    boolean hitandblock = true;
+                    
+                    if (hitandblock) {
+                    	switch (enumaction)
+                        {
+                            case NONE:
+                                this.transformFirstPersonItem(f, f1);
+                                break;
 
-                    switch (enumaction)
-                    {
-                        case NONE:
-                            this.transformFirstPersonItem(f, 0.0F);
-                            break;
+                            case EAT:
+                            case DRINK:
+                                this.performDrinking(abstractclientplayer, partialTicks);
+                                this.transformFirstPersonItem(f, f1);
+                                break;
 
-                        case EAT:
-                        case DRINK:
-                            this.performDrinking(abstractclientplayer, partialTicks);
-                            this.transformFirstPersonItem(f, 0.0F);
-                            break;
+                            case BLOCK:
+                                this.transformFirstPersonItem(f, f1);
+                                this.doBlockTransformations();
+                                break;
 
-                        case BLOCK:
-                            this.transformFirstPersonItem(f, 0.0F);
-                            this.doBlockTransformations();
-                            break;
+                            case BOW:
+                                this.transformFirstPersonItem(f, f1);
+                                this.doBowTransformations(partialTicks, abstractclientplayer);
+                        }
+					} else {
+						switch (enumaction)
+                        {
+                            case NONE:
+                                this.transformFirstPersonItem(f, 0.0F);
+                                break;
 
-                        case BOW:
-                            this.transformFirstPersonItem(f, 0.0F);
-                            this.doBowTransformations(partialTicks, abstractclientplayer);
-                    }
+                            case EAT:
+                            case DRINK:
+                                this.performDrinking(abstractclientplayer, partialTicks);
+                                this.transformFirstPersonItem(f, 0.0F);
+                                break;
+
+                            case BLOCK:
+                                this.transformFirstPersonItem(f, 0.0F);
+                                this.doBlockTransformations();
+                                break;
+
+                            case BOW:
+                                this.transformFirstPersonItem(f, 0.0F);
+                                this.doBowTransformations(partialTicks, abstractclientplayer);
+                        }
+					}
+                    
+                    
                 }
                 else
                 {

@@ -50,7 +50,7 @@ public class SplashProgress {
 		GlStateManager.enableTexture2D();
 		
 		if (splash == null) {
-			splash = new ResourceLocation("WizClient/splash.png");
+			splash = new ResourceLocation("WizClient/bg.png");
 		}
 		
 		tm.bindTexture(splash);
@@ -98,11 +98,11 @@ public class SplashProgress {
 		GlStateManager.resetColor();
 		resetTextureState();
 		
-		Gui.drawRect(0, sr.getScaledHeight() - 2, (int)calc, sr.getScaledWidth(), new Color(149, 201, 144).getRGB());
+		Gui.drawRect(0, sr.getScaledHeight() - 2, (int)calc, sr.getScaledWidth(), new Color(77, 93, 239).getRGB());
 		
 		Gui.drawRect(0, sr.getScaledHeight() - 2, sr.getScaledWidth(), sr.getScaledHeight(), new Color(0, 0, 0, 10).getRGB());
 		
-;	}
+	}
 	
 	public static void resetTextureState() {
 		GlStateManager.textureState[GlStateManager.activeTextureUnit].textureName = -1;
