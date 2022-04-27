@@ -406,6 +406,7 @@ public class ItemRenderer
                             case BLOCK:
                                 this.transformFirstPersonItem(f, f1);
                                 this.doBlockTransformations();
+                                GlStateManager.translate(-0.5F, 0.2F, 0.0F);
                                 break;
 
                             case BOW:

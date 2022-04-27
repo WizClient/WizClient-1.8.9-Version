@@ -100,6 +100,8 @@ public class SplashProgress {
 		
 		Gui.drawRect(0, sr.getScaledHeight() - 2, (int)calc, sr.getScaledWidth(), new Color(77, 93, 239).getRGB());
 		
+		
+		
 		Gui.drawRect(0, sr.getScaledHeight() - 2, sr.getScaledWidth(), sr.getScaledHeight(), new Color(0, 0, 0, 10).getRGB());
 		
 	}

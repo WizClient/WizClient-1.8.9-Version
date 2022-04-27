@@ -512,8 +512,10 @@ public class Minecraft implements IThreadListener, IPlayerUsage
         this.mcSoundHandler = new SoundHandler(this.mcResourceManager, this.gameSettings);
         this.mcResourceManager.registerReloadListener(this.mcSoundHandler);
         this.mcMusicTicker = new MusicTicker(this);
-        this.fontRendererObj = new FontRenderer(this.gameSettings, new ResourceLocation("textures/font/ascii.png"), this.renderEngine, false);
-
+        
+        //this.fontRendererObj = new FontRenderer(this.gameSettings, new ResourceLocation("textures/font/ascii.png"), this.renderEngine, false);
+        this.fontRendererObj = new FontRenderer(this.gameSettings, new ResourceLocation("WizClient/font/ascii.png"), this.renderEngine, false);
+        
         if (this.gameSettings.forceUnicodeFont != null)
         {
             this.fontRendererObj.setUnicodeFlag(this.isUnicode());
@@ -638,7 +640,7 @@ public class Minecraft implements IThreadListener, IPlayerUsage
     private void createDisplay() throws LWJGLException
     {
         Display.setResizable(true);
-        Display.setTitle("Minecraft 1.8.9");
+        Display.setTitle("Minecraft - WizClient 1.8.9");
 
         try
         {
@@ -692,8 +694,8 @@ public class Minecraft implements IThreadListener, IPlayerUsage
 
             try
             {
-                inputstream = this.mcDefaultResourcePack.getInputStreamAssets(new ResourceLocation("icons/icon_16x16.png"));
-                inputstream1 = this.mcDefaultResourcePack.getInputStreamAssets(new ResourceLocation("icons/icon_32x32.png"));
+                inputstream = this.mcDefaultResourcePack.getResourceStream(new ResourceLocation("WizClient/icon/icon_16x16.png"));
+                inputstream1 = this.mcDefaultResourcePack.getResourceStream(new ResourceLocation("WizClient/icon/icon_32x32.png"));
 
                 if (inputstream != null && inputstream1 != null)
                 {

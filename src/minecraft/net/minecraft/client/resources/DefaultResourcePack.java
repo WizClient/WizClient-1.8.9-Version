@@ -54,7 +54,7 @@ public class DefaultResourcePack implements IResourcePack
         return file1 != null && file1.isFile() ? new FileInputStream(file1) : null;
     }
 
-    private InputStream getResourceStream(ResourceLocation location)
+    public InputStream getResourceStream(ResourceLocation location)
     {
         String s = "/assets/" + location.getResourceDomain() + "/" + location.getResourcePath();
         InputStream inputstream = ReflectorForge.getOptiFineResourceStream(s);

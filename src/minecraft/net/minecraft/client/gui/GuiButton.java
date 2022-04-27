@@ -1,5 +1,7 @@
 package net.minecraft.client.gui;
 
+import java.awt.Color;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.PositionedSoundRecord;
 import net.minecraft.client.audio.SoundHandler;
@@ -8,7 +10,7 @@ import net.minecraft.util.ResourceLocation;
 
 public class GuiButton extends Gui
 {
-    protected static final ResourceLocation buttonTextures = new ResourceLocation("textures/gui/widgets.png");
+    protected static final ResourceLocation buttonTextures = new ResourceLocation("WizClient/gui/Button.png");
 
     /** Button width in pixels */
     protected int width;
@@ -79,7 +81,7 @@ public class GuiButton extends Gui
     {
         if (this.visible)
         {
-            FontRenderer fontrenderer = mc.fontRendererObj;
+        	FontRenderer fontrenderer = mc.fontRendererObj;
             mc.getTextureManager().bindTexture(buttonTextures);
             GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
             this.hovered = mouseX >= this.xPosition && mouseY >= this.yPosition && mouseX < this.xPosition + this.width && mouseY < this.yPosition + this.height;
@@ -98,10 +100,11 @@ public class GuiButton extends Gui
             }
             else if (this.hovered)
             {
-                j = 16777120;
+                j = 14737632;
             }
 
             this.drawCenteredString(fontrenderer, this.displayString, this.xPosition + this.width / 2, this.yPosition + (this.height - 8) / 2, j);
+            
         }
     }
 

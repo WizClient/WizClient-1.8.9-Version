@@ -1,6 +1,10 @@
 package WizClient;
 
+
+import WizClient.font.FontUtil;
 import WizClient.gui.SplashProgress;
+
+
 
 public class Client {
 	
@@ -11,9 +15,12 @@ public class Client {
 	
 	private DiscordRP discordRP = new DiscordRP();
 	
+	
 	public void init() {
+		FontUtil.bootstrap();
 		SplashProgress.setProgress(1, "Client - Initialising discord");
 		discordRP.start();
+		
 	}
 	
 	public void shutdown() {
@@ -23,4 +30,5 @@ public class Client {
 	public DiscordRP getDiscordRP() {
 		return discordRP;
 	}
+	
 }

@@ -33,6 +33,15 @@
 	</linkedResources>
 	<filteredResources>
 		<filter>
+			<id>1651065581436</id>
+			<name></name>
+			<type>30</type>
+			<matcher>
+				<id>org.eclipse.core.resources.regexFilterMatcher</id>
+				<arguments>node_modules|.git|__CREATED_BY_JAVA_LANGUAGE_SERVER__</arguments>
+			</matcher>
+		</filter>
+		<filter>
 			<id>1372623752673</id>
 			<name>jars</name>
 			<type>9</type>
