@@ -1,6 +1,9 @@
 package net.minecraft.client.gui;
 
 import com.google.common.collect.Lists;
+
+import WizClient.gui.UnicodeFontRenderer;
+
 import java.util.List;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
@@ -56,8 +59,14 @@ public class GuiLabel extends Gui
         return this;
     }
 
+    private static UnicodeFontRenderer ufr;
+    
     public void drawLabel(Minecraft mc, int mouseX, int mouseY)
     {
+    	if(ufr == null) {
+			ufr = UnicodeFontRenderer.getFontOnPC("Arial", 20);
+		}
+    	
         if (this.visible)
         {
             GlStateManager.enableBlend();
@@ -70,11 +79,13 @@ public class GuiLabel extends Gui
             {
                 if (this.centered)
                 {
-                    this.drawCenteredString(this.fontRenderer, (String)this.field_146173_k.get(k), this.field_146162_g + this.field_146167_a / 2, j + k * 10, this.field_146168_n);
+                	ufr.drawCenteredString((String)this.field_146173_k.get(k), this.field_146162_g + this.field_146167_a / 2, j + k * 10, this.field_146168_n);
+                    //this.drawCenteredString(this.fontRenderer, (String)this.field_146173_k.get(k), this.field_146162_g + this.field_146167_a / 2, j + k * 10, this.field_146168_n);
                 }
                 else
                 {
-                    this.drawString(this.fontRenderer, (String)this.field_146173_k.get(k), this.field_146162_g, j + k * 10, this.field_146168_n);
+                	ufr.drawString((String)this.field_146173_k.get(k), this.field_146162_g, j + k * 10, this.field_146168_n);
+                    //this.drawString(this.fontRenderer, (String)this.field_146173_k.get(k), this.field_146162_g, j + k * 10, this.field_146168_n);
                 }
             }
         }

@@ -36,7 +36,7 @@
 	<classpathentry kind="lib" path="jars/libraries/org/lwjgl/lwjgl/lwjgl/2.9.4-nightly-20150209/lwjgl-2.9.4-nightly-20150209.jar"/>
 	<classpathentry kind="lib" path="jars/libraries/org/lwjgl/lwjgl/lwjgl_util/2.9.4-nightly-20150209/lwjgl_util-2.9.4-nightly-20150209.jar"/>
 	<classpathentry kind="lib" path="jars/libraries/tv/twitch/twitch/6.5/twitch-6.5.jar"/>
-	<classpathentry kind="lib" path="D:/Dev CLIENT/Workspace/lib/discord-rpc.jar"/>
-	<classpathentry kind="lib" path="D:/Dev CLIENT/Workspace/lib/slick.jar"/>
+	<classpathentry kind="lib" path="D:/Dev CLIENT/WizClient-1.8.9-Version/lib/discord-rpc.jar"/>
+	<classpathentry kind="lib" path="D:/Dev CLIENT/WizClient-1.8.9-Version/lib/slick.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

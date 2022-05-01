@@ -54,8 +54,15 @@ public class WizClientMainMenu extends GuiScreen {
 		GlStateManager.popMatrix();
 		Gui.drawRect(0, 0, 220, this.height, new Color(0, 0, 0, 170).getRGB());
 		
+		
+		if(ufr == null) {
+			ufr = UnicodeFontRenderer.getFontOnPC("Arial", 20);
+		}
+		
 		String ver = "WizClient 1.8.9";
 		this.drawString(this.fontRendererObj, ver, 2, this.height - 10, -1);
+		
+		//ufr.drawString(ver, 2, this.height - 10, -1);
 		
 		super.drawScreen(mouseX, mouseY, partialTicks);
 		drawlogo();
@@ -66,9 +73,6 @@ public class WizClientMainMenu extends GuiScreen {
 		Client.getInstance().getDiscordRP().update("Idle", "Main menu");
 		Display.setTitle("Minecraft - WizClient 1.8.9 | " + this.mc.getMinecraft().getSession().getUsername());
 		
-		if(ufr == null) {
-			ufr = UnicodeFontRenderer.getFontOnPC("Arial", 20);
-		}
 		
 		ScaledResolution sr = new ScaledResolution(Minecraft.getMinecraft());
 		

@@ -71,7 +71,7 @@ public class KeyBinding implements Comparable<KeyBinding>
     }
 
     public KeyBinding(String description, int keyCode, String category)
-    {
+    {	
         this.keyDescription = description;
         this.keyCode = keyCode;
         this.keyCodeDefault = keyCode;

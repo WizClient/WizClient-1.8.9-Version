@@ -2,6 +2,8 @@ package net.minecraft.client.gui;
 
 import java.awt.Color;
 
+import WizClient.font.FontUtil;
+import WizClient.gui.UnicodeFontRenderer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.PositionedSoundRecord;
 import net.minecraft.client.audio.SoundHandler;
@@ -77,6 +79,8 @@ public class GuiButton extends Gui
     /**
      * Draws this button to the screen.
      */
+    private static UnicodeFontRenderer ufr;
+    
     public void drawButton(Minecraft mc, int mouseX, int mouseY)
     {
         if (this.visible)
@@ -103,6 +107,11 @@ public class GuiButton extends Gui
                 j = 14737632;
             }
 
+            if(ufr == null) {
+    			ufr = UnicodeFontRenderer.getFontOnPC("Arial", 20);
+    		}
+            //FontUtil.normal.drawCenteredString(this.displayString, this.xPosition + this.width / 2, this.yPosition + (this.height - 8) / 2, j);
+            
             this.drawCenteredString(fontrenderer, this.displayString, this.xPosition + this.width / 2, this.yPosition + (this.height - 8) / 2, j);
             
         }

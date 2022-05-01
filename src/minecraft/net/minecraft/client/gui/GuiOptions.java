@@ -1,6 +1,8 @@
 package net.minecraft.client.gui;
 
 import java.io.IOException;
+
+import WizClient.gui.UnicodeFontRenderer;
 import net.minecraft.client.audio.PositionedSoundRecord;
 import net.minecraft.client.audio.SoundCategory;
 import net.minecraft.client.audio.SoundEventAccessorComposite;
@@ -14,6 +16,7 @@ import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.util.IChatComponent;
 import net.minecraft.world.EnumDifficulty;
+
 
 public class GuiOptions extends GuiScreen implements GuiYesNoCallback
 {
@@ -232,9 +235,17 @@ public class GuiOptions extends GuiScreen implements GuiYesNoCallback
     /**
      * Draws the screen and all the components in it. Args : mouseX, mouseY, renderPartialTicks
      */
+    private static UnicodeFontRenderer ufr;
+    
     public void drawScreen(int mouseX, int mouseY, float partialTicks)
     {
+    	
+    	if(ufr == null) {
+			ufr = UnicodeFontRenderer.getFontOnPC("Arial", 20);
+		}
+    	
         this.drawDefaultBackground();
+        
         this.drawCenteredString(this.fontRendererObj, this.field_146442_a, this.width / 2, 15, 16777215);
         super.drawScreen(mouseX, mouseY, partialTicks);
     }

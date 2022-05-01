@@ -3,7 +3,11 @@ package WizClient.font;
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.ResourceLocation;
 
+import WizClient.font.MinecraftFontRenderer;
+
 import java.awt.*;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
@@ -19,14 +23,21 @@ public class FontUtil {
 
     private static Font getFont(Map<String, Font> locationMap, String location, int size) {
         Font font = null;
+        
+        
 
         try {
             if (locationMap.containsKey(location)) {
                 font = locationMap.get(location).deriveFont(Font.PLAIN, size);
             } else {
+            	
+            	
+            	
                 InputStream is = Minecraft.getMinecraft().getResourceManager()
-                        .getResource(new ResourceLocation("textures/wiz/" + location)).getInputStream();
+                        .getResource(new ResourceLocation("WizClient/f/" + location)).getInputStream();
+            	
                 font = Font.createFont(0, is);
+                
                 locationMap.put(location, font);
                 font = font.deriveFont(Font.PLAIN, size);
             }
@@ -70,6 +81,27 @@ public class FontUtil {
             }
         }
 
+        //normal = new MinecraftFontRenderer(new Font("Arial", Font.BOLD, 12), true, true);
         normal = new MinecraftFontRenderer(normal_, true, true);
     }
+    
+    public static void test() {
+    	try {
+        	Font uu = new Font("Comic Sans MS",Font.BOLD,40);
+        	
+        	int u = 10;
+        	
+        	System.out.println(normal.getClass());
+        	
+        	normal = new MinecraftFontRenderer(uu, true, true);
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("pipi");
+		}
+    }
+
+	private static char[] typeof(Font uu) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
