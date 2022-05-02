@@ -93,8 +93,8 @@ public class HUDCongifScreen extends GuiScreen {
 			moveSelectedRendererBy(x - prevX, y - prevY);
 		}
 		
-		this.prevX =x;
-		this.prevY =y;
+		this.prevX = x;
+		this.prevY = y;
 	}
 	
 	private void moveSelectedRendererBy(int offsetX, int offsetY) {
@@ -123,16 +123,18 @@ public class HUDCongifScreen extends GuiScreen {
 		
 		
 		ScaledResolution res = new ScaledResolution(Minecraft.getMinecraft());
-
 		
 		int screenWidth = res.getScaledWidth();
 		int screenHeight = res.getScaledHeight();
+		
 		
 		
 		int absoluteX = Math.max(0, Math.min(pos.getAbsoluteX(), Math.max(screenWidth - renderer.getWidth(), 0)));
 		int absoluteY = Math.max(0, Math.min(pos.getAbsoluteY(), Math.max(screenHeight - renderer.getHeight(), 0)));
 		
 		pos.setAbsolute(absoluteX, absoluteY);
+		
+		
 		
 	}
 	
@@ -155,10 +157,12 @@ public class HUDCongifScreen extends GuiScreen {
 		public MouseOverFinder(int x, int y) {
 			this.mouseX = x;
 			this.mouseY = y;
+		
 		}
 
 		@Override
 		public boolean test(IRenderer renderer) {
+			
 		
 			ScreenPosition pos = renderers.get(renderer);
 			

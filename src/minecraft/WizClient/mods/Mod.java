@@ -24,6 +24,7 @@ public class Mod {
 	public void setEnabled(boolean isEnabled) {
 		this.isEnabled = isEnabled;
 		
+		System.out.println(isEnabled);
 		if(isEnabled) {
 			EventManager.register(this);
 		} else {
@@ -34,4 +35,16 @@ public class Mod {
 	public boolean isEnabled() {
 		return isEnabled;
 	}
+	
+	public void ToogleMod() {
+		if(isEnabled) {
+			System.out.println("test");
+			EventManager.register(this);
+			isEnabled = false;
+		} else {
+			System.out.println("owo");
+			EventManager.unregister(this);
+		}
+	}
+	
 }

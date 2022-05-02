@@ -148,6 +148,7 @@ public class GameSettings
     
     //new
     public KeyBinding CLIENT_GUI_MOD_POS = new KeyBinding("Mod positioning", Keyboard.KEY_T, "WizClient"); 
+    public KeyBinding CLIENT_GUI_MOD_TOGGLE_FULLBRIGHT = new KeyBinding("Toogle Fullbright", Keyboard.KEY_J, "WizClient");
     //new
     
     
@@ -298,7 +299,7 @@ public class GameSettings
     
     public GameSettings(Minecraft mcIn, File optionsFileIn)
     {
-        this.mc = (KeyBinding[])((KeyBinding[])ArrayUtils.addAll(new KeyBinding[] {this.keyBindPickBlock, this.keyBindDrop, this.keyBindLeft, this.keyBindBack, this.keyBindRight, this.keyBindJump, this.keyBindSneak, this.keyBindSprint, this.keyBindInventory, this.keyBindAttack, this.keyBindUseItem, this.keyBindPlayerList, this.keyBindCommand, this.keyBindChat, this.keyBindScreenshot, this.keyBindTogglePerspective, this.keyBindSmoothCamera, this.keyBindFullscreen, this.keyBindStreamPauseUnpause, this.keyBindStreamCommercials, this.keyBindStreamToggleMic, this.keyBindsHotbar, this.keyBindSpectatorOutlines, this.keyBindStreamStartStop, this.CLIENT_GUI_MOD_POS}, this.keyBindings));
+        this.mc = (KeyBinding[])((KeyBinding[])ArrayUtils.addAll(new KeyBinding[] {this.keyBindPickBlock, this.keyBindDrop, this.keyBindLeft, this.keyBindBack, this.keyBindRight, this.keyBindJump, this.keyBindSneak, this.keyBindSprint, this.keyBindInventory, this.keyBindAttack, this.keyBindUseItem, this.keyBindPlayerList, this.keyBindCommand, this.keyBindChat, this.keyBindScreenshot, this.keyBindTogglePerspective, this.keyBindSmoothCamera, this.keyBindFullscreen, this.keyBindStreamPauseUnpause, this.keyBindStreamCommercials, this.keyBindStreamToggleMic, this.keyBindsHotbar, this.keyBindSpectatorOutlines, this.keyBindStreamStartStop, this.CLIENT_GUI_MOD_POS, this.CLIENT_GUI_MOD_TOGGLE_FULLBRIGHT}, this.keyBindings));
         this.hideGUI = EnumDifficulty.NORMAL;
         this.smoothCamera = "";
         this.gammaSetting = 70.0F;
@@ -344,7 +345,7 @@ public class GameSettings
     
     public GameSettings()
     {
-        this.mc = (KeyBinding[])((KeyBinding[])ArrayUtils.addAll(new KeyBinding[] {this.keyBindPickBlock, this.keyBindDrop, this.keyBindLeft, this.keyBindBack, this.keyBindRight, this.keyBindJump, this.keyBindSneak, this.keyBindSprint, this.keyBindInventory, this.keyBindAttack, this.keyBindUseItem, this.keyBindPlayerList, this.keyBindCommand, this.keyBindChat, this.keyBindScreenshot, this.keyBindTogglePerspective, this.keyBindSmoothCamera, this.keyBindFullscreen, this.keyBindStreamPauseUnpause, this.keyBindStreamCommercials, this.keyBindStreamToggleMic, this.keyBindsHotbar, this.keyBindSpectatorOutlines, this.keyBindStreamStartStop, this.CLIENT_GUI_MOD_POS}, this.keyBindings));
+        this.mc = (KeyBinding[])((KeyBinding[])ArrayUtils.addAll(new KeyBinding[] {this.keyBindPickBlock, this.keyBindDrop, this.keyBindLeft, this.keyBindBack, this.keyBindRight, this.keyBindJump, this.keyBindSneak, this.keyBindSprint, this.keyBindInventory, this.keyBindAttack, this.keyBindUseItem, this.keyBindPlayerList, this.keyBindCommand, this.keyBindChat, this.keyBindScreenshot, this.keyBindTogglePerspective, this.keyBindSmoothCamera, this.keyBindFullscreen, this.keyBindStreamPauseUnpause, this.keyBindStreamCommercials, this.keyBindStreamToggleMic, this.keyBindsHotbar, this.keyBindSpectatorOutlines, this.keyBindStreamStartStop, this.CLIENT_GUI_MOD_POS, this.CLIENT_GUI_MOD_TOGGLE_FULLBRIGHT}, this.keyBindings));
         this.hideGUI = EnumDifficulty.NORMAL;
         this.smoothCamera = "";
         this.gammaSetting = 70.0F;

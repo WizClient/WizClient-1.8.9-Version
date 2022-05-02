@@ -3,6 +3,8 @@ package net.minecraft.client.gui;
 import com.google.common.base.Predicate;
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
+
+import java.awt.Color;
 import java.util.Collection;
 import java.util.List;
 import java.util.Random;
@@ -363,8 +365,11 @@ public class GuiIngame extends Gui
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
         GlStateManager.disableLighting();
         GlStateManager.enableAlpha();
+        
     }
 
+    
+    
     protected void renderTooltip(ScaledResolution sr, float partialTicks)
     {
         if (this.mc.getRenderViewEntity() instanceof EntityPlayer)
