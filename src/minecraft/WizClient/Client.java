@@ -6,6 +6,7 @@ import WizClient.event.impl.ClientTickEvent;
 import WizClient.gui.SplashProgress;
 import WizClient.gui.hud.HUDManager;
 import WizClient.mods.ModInstances;
+import WizClient.util.SessionChanger;
 import net.minecraft.client.Minecraft;
 import net.minecraft.src.Config;
 
@@ -36,8 +37,8 @@ public class Client {
 	
 	public void start() {
 		hudManager = HUDManager.getInstance();
-		
 		ModInstances.register(hudManager);
+		
 		
 	}
 	
@@ -53,7 +54,6 @@ public class Client {
 	@EventTarget
 	public void onTick(ClientTickEvent e) {
 		
-		//System.out.println();
 		
 		if(Minecraft.getMinecraft().gameSettings.CLIENT_GUI_MOD_POS.isPressed()) {
 			hudManager.openConfigScreen();

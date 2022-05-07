@@ -53,10 +53,10 @@ public class ModArmorStatus extends ModDraggable {
 		int yAdd = (-16 * i) + 48;
 		
 		if (is.getItem().isDamageable()) {
-			double damage = (100 - (is.getItemDamage() * 100 )/is.getMaxDamage());
+			int damage = (100 - (is.getItemDamage() * 100 )/is.getMaxDamage());
 			
 			
-			font.drawString(String.format("%.2f%%", damage), pos.getAbsoluteX() + 20, pos.getAbsoluteY() + yAdd + 5, Color.HSBtoRGB((float)(System.currentTimeMillis() % 2500L) / 2500F, 0.8F, 0.8F));
+			font.drawString(damage + "%", pos.getAbsoluteX() + 20, pos.getAbsoluteY() + yAdd + 5, Color.HSBtoRGB((float)(System.currentTimeMillis() % 2500L) / 2500F, 0.8F, 0.8F));
 			//font.drawString(String.format("%.2f%%", damage), pos.getAbsoluteX() + 20, pos.getAbsoluteY() + yAdd + 5, -1);
 		}
 		

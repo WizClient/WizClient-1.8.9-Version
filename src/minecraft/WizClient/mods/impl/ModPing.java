@@ -4,16 +4,15 @@ import java.awt.Color;
 
 import WizClient.gui.hud.ScreenPosition;
 import WizClient.mods.ModDraggable;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.client.Minecraft;
 
-public class ModFPS extends ModDraggable {
+public class ModPing extends ModDraggable {
 
 	private ScreenPosition pos;
 	
 	@Override
 	public int getWidth() {
 		return 50;
-		
 	}
 
 	@Override
@@ -23,8 +22,7 @@ public class ModFPS extends ModDraggable {
 
 	@Override
 	public void render(ScreenPosition pos) {
-		//font.drawString("FPS: " + mc.getDebugFPS(), pos.getAbsoluteX() + 1, pos.getAbsoluteY() + 1, Color.WHITE.getRGB());
-		font.drawString("FPS: " + mc.getDebugFPS(), pos.getAbsoluteX() + 1, pos.getAbsoluteY() + 1, Color.HSBtoRGB((float)(System.currentTimeMillis() % 2500L) / 2500F, 0.8F, 0.8F));
+		font.drawString("Ping: " + mc.getMinecraft().getNetHandler().getPlayerInfo(Minecraft.getMinecraft().thePlayer.getUniqueID()).getResponseTime() + "ms", pos.getAbsoluteX() + 1, pos.getAbsoluteY() + 1, Color.HSBtoRGB((float)(System.currentTimeMillis() % 2500L) / 2500F, 0.8F, 0.8F));
 		
 	}
 

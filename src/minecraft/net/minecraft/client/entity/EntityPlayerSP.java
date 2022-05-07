@@ -1,5 +1,6 @@
 package net.minecraft.client.entity;
 
+import WizClient.mods.impl.ToggleSprintAndSneak.WizClientMovementInput;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.MovingSoundMinecartRiding;
 import net.minecraft.client.audio.PositionedSoundRecord;
@@ -100,7 +101,9 @@ public class EntityPlayerSP extends AbstractClientPlayer
     private int positionUpdateTicks;
     private boolean hasValidHealth;
     private String clientBrand;
+    
     public MovementInput movementInput;
+    //public WizClientMovementInput movementInput;
     protected Minecraft mc;
 
     /**

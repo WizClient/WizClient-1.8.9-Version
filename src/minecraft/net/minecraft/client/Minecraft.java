@@ -17,6 +17,7 @@ import com.mojang.authlib.yggdrasil.YggdrasilAuthenticationService;
 import WizClient.Client;
 import WizClient.event.impl.ClientTickEvent;
 import WizClient.gui.SplashProgress;
+import WizClient.mods.impl.ToggleSprintAndSneak.WizClientMovementInput;
 import WizClient.ui.WizClientMainMenu;
 
 import java.awt.image.BufferedImage;
@@ -239,7 +240,7 @@ public class Minecraft implements IThreadListener, IPlayerUsage
     private Entity renderViewEntity;
     public Entity pointedEntity;
     public EffectRenderer effectRenderer;
-    private final Session session;
+    public Session session;
     private boolean isGamePaused;
 
     /** The font renderer used for displaying and measuring text */
@@ -2435,6 +2436,7 @@ public class Minecraft implements IThreadListener, IPlayerUsage
 
             this.thePlayer.preparePlayerToSpawn();
             worldClientIn.spawnEntityInWorld(this.thePlayer);
+            //this.thePlayer.movementInput = new WizClientMovementInput(this.gameSettings);
             this.thePlayer.movementInput = new MovementInputFromOptions(this.gameSettings);
             this.playerController.setPlayerCapabilities(this.thePlayer);
             this.renderViewEntity = this.thePlayer;
@@ -2473,6 +2475,7 @@ public class Minecraft implements IThreadListener, IPlayerUsage
         this.thePlayer.setClientBrand(s);
         this.theWorld.spawnEntityInWorld(this.thePlayer);
         this.playerController.flipPlayer(this.thePlayer);
+        //this.thePlayer.movementInput = new WizClientMovementInput(this.gameSettings);
         this.thePlayer.movementInput = new MovementInputFromOptions(this.gameSettings);
         this.thePlayer.setEntityId(i);
         this.playerController.setPlayerCapabilities(this.thePlayer);
