@@ -9,11 +9,13 @@ public class ModToggleSneak extends ModDraggable{
 	
 	public boolean flyBoost = true;
 	public float flyBoostFactor = 4;
-	public int keyHoldTicks = 7;
+	public int keyHoldTicks = 15;
+	
+	private String textToRender = "";
 	
 	@Override
 	public int getWidth() {
-		return 0;
+		return 104;
 	}
 
 	@Override
@@ -23,8 +25,14 @@ public class ModToggleSneak extends ModDraggable{
 
 	@Override
 	public void render(ScreenPosition pos) {
-		// TODO Auto-generated method stub
+		textToRender = mc.thePlayer.movementInput.getDisplayTextSneak();
+		font.drawString(textToRender, pos.getAbsoluteX(), pos.getAbsoluteY(), -1);
 		
+	}
+	
+	@Override
+	public void renderDummy(ScreenPosition pos) {
+		font.drawString("[Sneaking (Toggled)]", pos.getAbsoluteX() + 1, pos.getAbsoluteY() + 1, -1);
 	}
 
 	@Override

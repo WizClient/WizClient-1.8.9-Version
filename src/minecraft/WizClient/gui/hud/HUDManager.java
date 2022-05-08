@@ -41,6 +41,7 @@ public class HUDManager {
 	}
 	
 	public void unregister(IRenderer... renderers) {
+		
 		for (IRenderer render : renderers) {
 			this.registeredRenderers.remove(render);
 		}

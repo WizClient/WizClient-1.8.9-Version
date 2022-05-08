@@ -12,15 +12,16 @@ import net.minecraft.util.MovementInput;
 public class WizClientMovementInput extends MovementInput {
 
 	private boolean sprint = false;
+	private int toogleSneak;
+	private boolean ts;
+	private String displayText;
 	private GameSettings gameSettings;
-	private int sneakWasPressed = 0;
+	private long sneakWasPressed = 0;
 	private int sprintWasPressed = 0;
 	private EntityPlayer player;
 	private float origionalFlySpeed = -1.0F;
 	private float boostedFlySpeed = 0;	
 	private Minecraft mc;
-	
-	private static final DecimalFormat df = new DecimalFormat("#.0");
 	
 	public WizClientMovementInput(GameSettings gameSettings) {
 		this.gameSettings = gameSettings;
@@ -52,29 +53,48 @@ public class WizClientMovementInput extends MovementInput {
 		
 		jump = gameSettings.keyBindSneak.isKeyDown();
 		
+		
 		//  ---  TOGGLE SNEAK   ---  //
 		
-		/*
 		if(ModInstances.getModToggleSneak().isEnabled()) {
 			if(gameSettings.keyBindSprint.isKeyDown()) {
 				if(sneakWasPressed == 0) {
+					
+					if(toogleSneak == 1) {
+						if(sneak) {
+							if(gameSettings.keyBindSprint.isKeyDown()) {
+								ts = true;
+							} else {
+								ts = false;
+							}
+						}
+					}
+					
 					if(sneak) {
-						sneakWasPressed = -1;
+						sneak = true;
 					} else if(player.isRiding() || player.capabilities.isFlying) {
 						sneakWasPressed = ModInstances.getModToggleSneak().keyHoldTicks + 1;
 					} else {
 						sneakWasPressed = 1;
 					}
-					sneak = !sneak;
+
+					if(toogleSneak == 0) {
+						sneak = !sneak;
+					} 
+					
+					
 				} else if(sneakWasPressed > 0) {
 					sneakWasPressed++;
 				}
 				
 			} else {
-				if((ModInstances.getModToggleSneak().keyHoldTicks > 0) && (sneakWasPressed > ModInstances.getModToggleSneak().keyHoldTicks)) {
+				if((ModInstances.getModToggleSneak().keyHoldTicks > 0) && (sneakWasPressed > ModInstances.getModToggleSneak().keyHoldTicks) || ts == true) {
 					sneak = false;
 				}
 				sneakWasPressed = 0;
+				ts = false;
+				toogleSneak = 0;
+					
 			}
 		} else {
 			sneak = gameSettings.keyBindSprint.isKeyDown();
@@ -83,33 +103,32 @@ public class WizClientMovementInput extends MovementInput {
 		if(sneak) {
 			moveStrafe *= 0.3F;
 			moveForward *= 0.3F;
+			
+			if(sneakWasPressed >= 15) {
+				toogleSneak = 0;
+			} else {
+				toogleSneak = 1;
+			}
 		}
 		
-		*/
 		
 		
 		//  ---  TOGGLE SPRINT   ---  //
 		
-		/*
+		
 		if(ModInstances.getModToggleSprint().isEnabled()) {
 			if(gameSettings.keyBindInventory.isKeyDown()) {
 				if(sprintWasPressed == 0 ) {
 					if(sprint) {
 						sprintWasPressed = -1;
 					} else if(player.capabilities.isFlying){
-						sprintWasPressed = ModInstances.getModToggleSprint().keyHoldTicks + 1;
+						sprintWasPressed = 1;
 					} else {
 						sprintWasPressed = 1;
 					}
 					sprint = !sprint;
-					
-				} else if(sprintWasPressed > 0){
-					sprintWasPressed++;
-				}
+				} 
 			} else {
-				if((ModInstances.getModToggleSprint().keyHoldTicks > 0) && (sprintWasPressed > ModInstances.getModToggleSprint().keyHoldTicks)) {
-					sprint = false;
-				}
 				sprintWasPressed = 0;
 			}
 		} else {
@@ -119,15 +138,19 @@ public class WizClientMovementInput extends MovementInput {
 		if(sprint && moveForward == 1.0F && player.onGround && !player.isUsingItem() && !player.isPotionActive(Potion.blindness)) {
 			player.setSprinting(true);
 		}
-		*/
 		
+		
+
+		/*
 		if(ModInstances.getModToggleSprint().flyBoost && player.capabilities.isCreativeMode && player.capabilities.isFlying && (mc.getRenderViewEntity() == player) && sprint) {
 			
 			if(origionalFlySpeed < 0.0F || this.player.capabilities.getFlySpeed() != boostedFlySpeed) {
 				origionalFlySpeed = this.player.capabilities.getFlySpeed();
+				System.out.println(origionalFlySpeed);
 			}
 			
 			boostedFlySpeed = origionalFlySpeed * ModInstances.getModToggleSprint().flyBoostFactor;
+			
 			player.capabilities.setFlySpeed(boostedFlySpeed);
 			
 			if(sneak) {
@@ -140,53 +163,76 @@ public class WizClientMovementInput extends MovementInput {
 			
 		} else {
 			if(player.capabilities.getFlySpeed() == boostedFlySpeed) {
+				System.out.println("MA");
 				this.player.capabilities.setFlySpeed(boostedFlySpeed);
 			}
+			
+			origionalFlySpeed = -1.0F;
+		}
+		*/
+		
+		System.out.println(player.capabilities.getFlySpeed());
+		
+		if(ModInstances.getModToggleSprint().flyBoost && player.capabilities.isCreativeMode && player.capabilities.isFlying && (mc.getRenderViewEntity() == player) && sprint) {
+			//System.out.println(origionalFlySpeed);
+			if(origionalFlySpeed < 0.0F || this.player.capabilities.getFlySpeed() != boostedFlySpeed) {
+				origionalFlySpeed = this.player.capabilities.getFlySpeed();
+				player.capabilities.setFlySpeed(origionalFlySpeed);
+			}
+			
+			
+		} else {
+			boostedFlySpeed = origionalFlySpeed * ModInstances.getModToggleSprint().flyBoostFactor;
+			
+			if(player.capabilities.getFlySpeed() == boostedFlySpeed) {
+				this.player.capabilities.setFlySpeed(boostedFlySpeed);
+			}
+			//System.out.println(player.capabilities.getFlySpeed());
 			origionalFlySpeed = -1.0F;
 		}
 	}
 	
-	public String getDisplayText() {
+	
+	public String getDisplayTextSneak() {
 		
 		String displayText = "";
 		
 		boolean isFlying = mc.thePlayer.capabilities.isFlying;
 		boolean isRiding = mc.thePlayer.isRiding();
+		boolean isSprinting = mc.thePlayer.isSprinting();
 		boolean isHoldingSneak = gameSettings.keyBindSprint.isKeyDown();
 		boolean isHoldingSprint = gameSettings.keyBindInventory.isKeyDown();
 		
-		System.out.println("TWT");
-		
-		if(isFlying) {
-			if(origionalFlySpeed > 0.0F) {
-				displayText += "[Flying (" + df.format(boostedFlySpeed / origionalFlySpeed) + "x Boost)]";
+		if(sneak && !isFlying && !ts) {
+			if(sneakWasPressed >= 15) {
+				displayText = "[Sneaking (Key Held)]";
 			} else {
-				displayText += "[Flying]";
+				displayText = "[Sneaking (Toggled)]";
 			}
-		}
+				
+		} 
+		return displayText.trim();
 		
-		if(isRiding) {
-			displayText += "[Riding] ";
-		}
+	}
+	
+	public String getDisplayTextSprint() {
 		
-		if(sneak) {
-			
-			if(isFlying) {
-				displayText += "[Descending] ";
-			} else if(isRiding) {
-				displayText += "[DisMounting]";
-			} else if(isHoldingSneak) {
-				displayText += "[Sneaking (Key Held)]";
-			} else {
-				displayText += "[Sneaking (Key Toggled)]";
-			}
-			
-		} else if(sprint && !isRiding && !isFlying) {
-			if(isHoldingSprint) {
-				displayText += "[Sprinting (Key Held)]";
-			} else {
-				displayText += "[Sprinting (Key Toggled)]";
-			}
+		boolean isFlying = mc.thePlayer.capabilities.isFlying;
+		boolean isRiding = mc.thePlayer.isRiding();
+		boolean isSprinting = mc.thePlayer.isSprinting();
+		boolean isHoldingSprint = gameSettings.keyBindInventory.isKeyDown();
+
+		
+		if(sprint) {
+			if(!isHoldingSprint) {
+				displayText = "[Sprinting (Toggled)]";
+				System.out.println(player.capabilities.getFlySpeed());
+			} 
+		} else if(isSprinting && !isHoldingSprint) {
+			displayText = "[Sprinting (Vanilla)]";
+			System.out.println(player.capabilities.getFlySpeed());
+		} else if(!isHoldingSprint) {
+			displayText = "";
 		}
 		
 		return displayText.trim();

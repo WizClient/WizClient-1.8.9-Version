@@ -7,7 +7,7 @@ import net.minecraft.client.gui.FontRenderer;
 
 public class Mod {
 	
-	private boolean isEnabled = true;
+	private boolean isEnabled;
 	
 	protected final Minecraft mc;
 	protected final FontRenderer font;
@@ -18,13 +18,12 @@ public class Mod {
 		this.font = this.mc.fontRendererObj;
 		this.client = Client.getInstance();
 		
-		setEnabled(isEnabled);
+		this.isEnabled = true;
+		
 	}
 	
 	public void setEnabled(boolean isEnabled) {
 		this.isEnabled = isEnabled;
-		
-		System.out.println(isEnabled);
 		if(isEnabled) {
 			EventManager.register(this);
 		} else {
@@ -37,14 +36,7 @@ public class Mod {
 	}
 	
 	public void ToogleMod() {
-		if(isEnabled) {
-			System.out.println("test");
-			EventManager.register(this);
-			isEnabled = false;
-		} else {
-			System.out.println("owo");
-			EventManager.unregister(this);
-		}
+		setEnabled(!this.isEnabled);
 	}
 	
 }

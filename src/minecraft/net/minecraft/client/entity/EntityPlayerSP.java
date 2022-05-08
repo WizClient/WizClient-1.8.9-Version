@@ -102,8 +102,8 @@ public class EntityPlayerSP extends AbstractClientPlayer
     private boolean hasValidHealth;
     private String clientBrand;
     
-    public MovementInput movementInput;
-    //public WizClientMovementInput movementInput;
+    //public MovementInput movementInput;
+    public WizClientMovementInput movementInput;
     protected Minecraft mc;
 
     /**

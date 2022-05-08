@@ -37,10 +37,30 @@ public class ModInstances {
 		api.register(modKeyStrokes);
 		
 		modToggleSprint = new ModToggleSprint();
-		//api.register(modToggleSprint);
+		api.register(modToggleSprint);
 		
 		modToggleSneak = new ModToggleSneak();
-		//api.register(modToggleSneak);
+		api.register(modToggleSneak);
+	}
+	
+	public static ModFPS getModFPS() {
+		return modFPS;
+	}
+	
+	public static ModArmorStatus getModArmorStatus() {
+		return modArmorStatus;
+	}
+	
+	public static ModPing getModPing() {
+		return modPing;
+	}
+	
+	 public static ModCoords getModCoords() {
+		return modCoords;
+	}
+	 
+	public static ModKeyStrokes getModKeyStrokes() {
+		return modKeyStrokes;
 	}
 	
 	public static ModToggleSprint getModToggleSprint() {

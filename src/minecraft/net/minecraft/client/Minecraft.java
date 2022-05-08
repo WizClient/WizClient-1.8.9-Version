@@ -2436,8 +2436,8 @@ public class Minecraft implements IThreadListener, IPlayerUsage
 
             this.thePlayer.preparePlayerToSpawn();
             worldClientIn.spawnEntityInWorld(this.thePlayer);
-            //this.thePlayer.movementInput = new WizClientMovementInput(this.gameSettings);
-            this.thePlayer.movementInput = new MovementInputFromOptions(this.gameSettings);
+            this.thePlayer.movementInput = new WizClientMovementInput(this.gameSettings);
+            //this.thePlayer.movementInput = new MovementInputFromOptions(this.gameSettings);
             this.playerController.setPlayerCapabilities(this.thePlayer);
             this.renderViewEntity = this.thePlayer;
         }
@@ -2475,8 +2475,8 @@ public class Minecraft implements IThreadListener, IPlayerUsage
         this.thePlayer.setClientBrand(s);
         this.theWorld.spawnEntityInWorld(this.thePlayer);
         this.playerController.flipPlayer(this.thePlayer);
-        //this.thePlayer.movementInput = new WizClientMovementInput(this.gameSettings);
-        this.thePlayer.movementInput = new MovementInputFromOptions(this.gameSettings);
+        this.thePlayer.movementInput = new WizClientMovementInput(this.gameSettings);
+        //this.thePlayer.movementInput = new MovementInputFromOptions(this.gameSettings);
         this.thePlayer.setEntityId(i);
         this.playerController.setPlayerCapabilities(this.thePlayer);
         this.thePlayer.setReducedDebug(entityplayersp.hasReducedDebug());

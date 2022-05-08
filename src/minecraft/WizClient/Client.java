@@ -60,7 +60,8 @@ public class Client {
 		}
 		
 		if(Minecraft.getMinecraft().gameSettings.CLIENT_GUI_MOD_TOGGLE_FULLBRIGHT.isPressed()) {
-			
+
+			//ModInstances.getModFPS().ToogleMod();
 			
 			if (!fullbright) {
 				Minecraft.getMinecraft().gameSettings.saturation = 1000F;

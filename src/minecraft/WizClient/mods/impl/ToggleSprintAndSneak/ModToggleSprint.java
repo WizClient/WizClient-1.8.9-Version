@@ -15,8 +15,7 @@ public class ModToggleSprint extends ModDraggable{
 	
 	@Override
 	public int getWidth() {
-		//return font.getStringWidth(mc.thePlayer.movementInput.getDisplayText());
-		return 40;
+		return 105;
 	}
 
 	@Override
@@ -28,15 +27,14 @@ public class ModToggleSprint extends ModDraggable{
 	public void render(ScreenPosition pos) {
 		
 		
-		//textToRender = mc.thePlayer.movementInput.getDisplayText();
-		System.out.println(mc.thePlayer.movementInput);
-		//font.drawString(textToRender, pos.getAbsoluteX(), pos.getAbsoluteY(), -1);
+		textToRender = mc.thePlayer.movementInput.getDisplayTextSprint();
+		font.drawString(textToRender, pos.getAbsoluteX(), pos.getAbsoluteY(), -1);
 		
 	}
 	
 	@Override
 	public void renderDummy(ScreenPosition pos) {
-		font.drawString("[Sprinting (Toggled)]", pos.getAbsoluteX(), pos.getAbsoluteY(), -1);
+		font.drawString("[Sprinting (Toggled)]", pos.getAbsoluteX() + 1, pos.getAbsoluteY() + 1, -1);
 	}
 
 	@Override
@@ -49,5 +47,7 @@ public class ModToggleSprint extends ModDraggable{
 	public ScreenPosition load() {
 		return pos;
 	}
+	
+	
 
 }
