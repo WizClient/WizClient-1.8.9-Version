@@ -98,8 +98,6 @@ public class ModKeyStrokes extends ModDraggable{
 		}
 	}
 	
-	private ScreenPosition pos;
-	
 	private KeystrokesMode mod = KeystrokesMode.ZQSD_SPRINT_MOUSE;
 	
 	public void setMod(KeystrokesMode mod) {
@@ -142,17 +140,6 @@ public class ModKeyStrokes extends ModDraggable{
 		
 		GL11.glPopMatrix();
 		
-	}
-
-	@Override
-	public void save(ScreenPosition pos) {
-		this.pos = pos;
-		
-	}
-
-	@Override
-	public ScreenPosition load() {
-		return pos;
 	}
 
 }

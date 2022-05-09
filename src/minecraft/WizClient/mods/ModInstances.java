@@ -2,6 +2,7 @@ package WizClient.mods;
 
 import WizClient.gui.hud.HUDManager;
 import WizClient.mods.impl.ModArmorStatus;
+import WizClient.mods.impl.ModCPS;
 import WizClient.mods.impl.ModCoords;
 import WizClient.mods.impl.ModFPS;
 import WizClient.mods.impl.ModKeyStrokes;
@@ -18,6 +19,7 @@ public class ModInstances {
 	private static ModKeyStrokes modKeyStrokes;
 	private static ModToggleSprint modToggleSprint;
 	private static ModToggleSneak modToggleSneak;
+	private static ModCPS modCPS;
 	
 	public static void register(HUDManager api) {
 		
@@ -41,6 +43,9 @@ public class ModInstances {
 		
 		modToggleSneak = new ModToggleSneak();
 		api.register(modToggleSneak);
+		
+		modCPS = new ModCPS();
+		api.register(modCPS);
 	}
 	
 	public static ModFPS getModFPS() {
@@ -69,6 +74,10 @@ public class ModInstances {
 	
 	public static ModToggleSneak getModToggleSneak() {
 		return modToggleSneak;
+	}
+	
+	public static ModCPS getModCPS() {
+		return modCPS;
 	}
 	
 

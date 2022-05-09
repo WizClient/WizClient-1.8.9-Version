@@ -13,8 +13,6 @@ import net.minecraft.util.BlockPos;
 import net.minecraft.world.chunk.Chunk;
 
 public class ModCoords extends ModDraggable {
-
-	private ScreenPosition pos;
 	
 	@Override
 	public int getWidth() {
@@ -46,17 +44,6 @@ public class ModCoords extends ModDraggable {
 				
 			);
 		
-	}
-
-	@Override
-	public void save(ScreenPosition pos) {
-		this.pos = pos;
-		
-	}
-
-	@Override
-	public ScreenPosition load() {
-		return pos;
 	}
 
 }

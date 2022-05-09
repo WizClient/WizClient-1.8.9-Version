@@ -8,13 +8,15 @@ import WizClient.gui.hud.HUDManager;
 import WizClient.mods.ModInstances;
 import WizClient.util.SessionChanger;
 import net.minecraft.client.Minecraft;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.src.Config;
-
 
 
 public class Client {
 	
 	private boolean fullbright;
+
+	private EntityPlayer player;
 	
 	private static final Client INSTANCE = new Client();
 	public static final Client getInstance() { 
@@ -29,6 +31,7 @@ public class Client {
 	public void init() {
 		SplashProgress.setProgress(1, "Client - Initialising discord");
 		discordRP.start();
+		FileManager.init();
 		EventManager.register(this);
 		//FontUtil.bootstrap();
 		//FontUtil.test();
@@ -60,8 +63,6 @@ public class Client {
 		}
 		
 		if(Minecraft.getMinecraft().gameSettings.CLIENT_GUI_MOD_TOGGLE_FULLBRIGHT.isPressed()) {
-
-			//ModInstances.getModFPS().ToogleMod();
 			
 			if (!fullbright) {
 				Minecraft.getMinecraft().gameSettings.saturation = 1000F;

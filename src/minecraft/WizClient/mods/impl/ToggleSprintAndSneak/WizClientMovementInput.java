@@ -140,55 +140,8 @@ public class WizClientMovementInput extends MovementInput {
 		}
 		
 		
-
-		/*
 		if(ModInstances.getModToggleSprint().flyBoost && player.capabilities.isCreativeMode && player.capabilities.isFlying && (mc.getRenderViewEntity() == player) && sprint) {
-			
-			if(origionalFlySpeed < 0.0F || this.player.capabilities.getFlySpeed() != boostedFlySpeed) {
-				origionalFlySpeed = this.player.capabilities.getFlySpeed();
-				System.out.println(origionalFlySpeed);
-			}
-			
-			boostedFlySpeed = origionalFlySpeed * ModInstances.getModToggleSprint().flyBoostFactor;
-			
-			player.capabilities.setFlySpeed(boostedFlySpeed);
-			
-			if(sneak) {
-				player.motionY -= 0.15D * (double)(ModInstances.getModToggleSprint().flyBoostFactor - 1.0F);
-			}
-			
-			if(jump) {
-				player.motionY += 0.15D * (double)(ModInstances.getModToggleSprint().flyBoostFactor - 1.0F);
-			}
-			
-		} else {
-			if(player.capabilities.getFlySpeed() == boostedFlySpeed) {
-				System.out.println("MA");
-				this.player.capabilities.setFlySpeed(boostedFlySpeed);
-			}
-			
-			origionalFlySpeed = -1.0F;
-		}
-		*/
-		
-		System.out.println(player.capabilities.getFlySpeed());
-		
-		if(ModInstances.getModToggleSprint().flyBoost && player.capabilities.isCreativeMode && player.capabilities.isFlying && (mc.getRenderViewEntity() == player) && sprint) {
-			//System.out.println(origionalFlySpeed);
-			if(origionalFlySpeed < 0.0F || this.player.capabilities.getFlySpeed() != boostedFlySpeed) {
-				origionalFlySpeed = this.player.capabilities.getFlySpeed();
-				player.capabilities.setFlySpeed(origionalFlySpeed);
-			}
-			
-			
-		} else {
-			boostedFlySpeed = origionalFlySpeed * ModInstances.getModToggleSprint().flyBoostFactor;
-			
-			if(player.capabilities.getFlySpeed() == boostedFlySpeed) {
-				this.player.capabilities.setFlySpeed(boostedFlySpeed);
-			}
-			//System.out.println(player.capabilities.getFlySpeed());
-			origionalFlySpeed = -1.0F;
+			player.setSprinting(true);
 		}
 	}
 	
@@ -226,11 +179,9 @@ public class WizClientMovementInput extends MovementInput {
 		if(sprint) {
 			if(!isHoldingSprint) {
 				displayText = "[Sprinting (Toggled)]";
-				System.out.println(player.capabilities.getFlySpeed());
 			} 
 		} else if(isSprinting && !isHoldingSprint) {
 			displayText = "[Sprinting (Vanilla)]";
-			System.out.println(player.capabilities.getFlySpeed());
 		} else if(!isHoldingSprint) {
 			displayText = "";
 		}
