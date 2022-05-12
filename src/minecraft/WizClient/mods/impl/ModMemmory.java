@@ -47,15 +47,4 @@ public class ModMemmory extends ModDraggable {
         font.drawString(memoryPercent, pos.getAbsoluteX() + 1, pos.getAbsoluteY(),  -1);
 	}
 
-	@Override
-	public void save(ScreenPosition pos) {
-		this.pos = pos;
-		
-	}
-
-	@Override
-	public ScreenPosition load() {
-		return pos;
-	}
-
 }
