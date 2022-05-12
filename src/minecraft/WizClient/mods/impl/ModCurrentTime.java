@@ -29,18 +29,5 @@ public class ModCurrentTime extends ModDraggable {
 		font.drawString(currenthour, pos.getAbsoluteX() + 1, pos.getAbsoluteY() + 1, -1);
 		
 	}
-
-	@Override
-	public void save(ScreenPosition pos) {
-		this.pos = pos;
-		
-	}
-
-	@Override
-	public ScreenPosition load() {
-		return pos;
-		
-	}
-
 	
 }
