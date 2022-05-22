@@ -15,6 +15,8 @@ import com.mojang.realmsclient.dto.PlayerInfo;
 
 import WizClient.Client;
 import WizClient.gui.UnicodeFontRenderer;
+import WizClient.ui.auth.AltManagerGui;
+import WizClient.util.HeadUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.Gui;
@@ -49,7 +51,7 @@ public class WizClientMainMenu extends GuiScreen {
 		GlStateManager.disableLighting();
 		GlStateManager.disableFog();
         
-		mc.fontRendererObj.drawString(mc.getSession().getUsername(), this.width - this.fontRendererObj.getStringWidth(mc.getSession().getUsername()) - 10, 5, -1);
+		mc.fontRendererObj.drawString(mc.getSession().getUsername(), this.width - this.fontRendererObj.getStringWidth(mc.getSession().getUsername()) - 10, 10, -1);
 
 		GlStateManager.popMatrix();
 		Gui.drawRect(0, 0, 220, this.height, new Color(0, 0, 0, 170).getRGB());
@@ -58,11 +60,15 @@ public class WizClientMainMenu extends GuiScreen {
 		if(ufr == null) {
 			ufr = UnicodeFontRenderer.getFontOnPC("Arial", 20);
 		}
+		String copyright = "Copyright Mojang AB. Do not distribute!";
+		this.drawString(this.fontRendererObj, copyright, this.width - this.fontRendererObj.getStringWidth(copyright) - 2, this.height - 10, -1);
 		
 		String ver = "WizClient 1.8.9";
 		this.drawString(this.fontRendererObj, ver, 2, this.height - 10, -1);
 		
 		//ufr.drawString(ver, 2, this.height - 10, -1);
+		
+		HeadUtil.drawPlayerHead(mc.getSession().getUsername(), this.width - this.fontRendererObj.getStringWidth(mc.getSession().getUsername()) - 30, 5, 16);
 		
 		super.drawScreen(mouseX, mouseY, partialTicks);
 		drawlogo();
@@ -80,8 +86,8 @@ public class WizClientMainMenu extends GuiScreen {
 		this.buttonList.add(new GuiButton(2, 10, height / 2 - 15, I18n.format("menu.multiplayer", new Object[0])));
 		this.buttonList.add(new GuiButton(3, 10, height / 2 + 10, I18n.format("menu.options", new Object[0])));
 		this.buttonList.add(new GuiButton(4, 10, height / 2 + 35, I18n.format("menu.quit", new Object[0])));
+		this.buttonList.add(new GuiButton(5, 10, height / 2 + 70, "ALT"));
 
-		
 		FontRenderer fr = mc.fontRendererObj;
 		mc.getTextureManager().bindTexture(buttonTexture);
 		
@@ -121,6 +127,9 @@ public class WizClientMainMenu extends GuiScreen {
 			break;
 		case 4:
 			mc.shutdown();
+			break;
+		case 5:
+			mc.displayGuiScreen(new AltManagerGui());
 			break;
 			
 

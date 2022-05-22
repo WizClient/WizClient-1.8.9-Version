@@ -6,7 +6,6 @@ import WizClient.event.impl.ClientTickEvent;
 import WizClient.gui.SplashProgress;
 import WizClient.gui.hud.HUDManager;
 import WizClient.mods.ModInstances;
-import WizClient.util.SessionChanger;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.src.Config;

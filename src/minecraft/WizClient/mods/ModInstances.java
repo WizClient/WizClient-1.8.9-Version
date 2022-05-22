@@ -7,6 +7,8 @@ import WizClient.mods.impl.ModCoords;
 import WizClient.mods.impl.ModFPS;
 import WizClient.mods.impl.ModKeyStrokes;
 import WizClient.mods.impl.ModPing;
+import WizClient.mods.impl.ModTargetHUD;
+import WizClient.mods.impl.ModDirection.ModDirection;
 import WizClient.mods.impl.ToggleSprintAndSneak.ModToggleSneak;
 import WizClient.mods.impl.ToggleSprintAndSneak.ModToggleSprint;
 
@@ -20,6 +22,8 @@ public class ModInstances {
 	private static ModToggleSprint modToggleSprint;
 	private static ModToggleSneak modToggleSneak;
 	private static ModCPS modCPS;
+	private static ModTargetHUD modTargetHUD;
+	private static ModDirection modDirection;
 	
 	public static void register(HUDManager api) {
 		
@@ -46,6 +50,18 @@ public class ModInstances {
 		
 		modCPS = new ModCPS();
 		api.register(modCPS);
+		
+		modTargetHUD = new ModTargetHUD();
+		api.register(modTargetHUD);
+		
+		modDirection = new ModDirection();
+		api.register(modDirection);
+		
+
+	}
+	
+	public static ModDirection getModDirection() {
+		return modDirection;
 	}
 	
 	public static ModFPS getModFPS() {
@@ -80,5 +96,8 @@ public class ModInstances {
 		return modCPS;
 	}
 	
+	public static ModTargetHUD getModTargetHUD() {
+		return modTargetHUD;
+	}
 
 }
