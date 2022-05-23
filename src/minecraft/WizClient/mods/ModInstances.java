@@ -4,8 +4,11 @@ import WizClient.gui.hud.HUDManager;
 import WizClient.mods.impl.ModArmorStatus;
 import WizClient.mods.impl.ModCPS;
 import WizClient.mods.impl.ModCoords;
+import WizClient.mods.impl.ModCurrentTime;
 import WizClient.mods.impl.ModFPS;
+import WizClient.mods.impl.ModItemCounter;
 import WizClient.mods.impl.ModKeyStrokes;
+import WizClient.mods.impl.ModMemmory;
 import WizClient.mods.impl.ModPing;
 import WizClient.mods.impl.ModTargetHUD;
 import WizClient.mods.impl.ModDirection.ModDirection;
@@ -24,6 +27,9 @@ public class ModInstances {
 	private static ModCPS modCPS;
 	private static ModTargetHUD modTargetHUD;
 	private static ModDirection modDirection;
+	private static ModCurrentTime modCurrentTime;
+	private static ModMemmory modMemmory;
+	private static ModItemCounter modItemCounter;
 	
 	public static void register(HUDManager api) {
 		
@@ -57,7 +63,27 @@ public class ModInstances {
 		modDirection = new ModDirection();
 		api.register(modDirection);
 		
+		modCurrentTime = new ModCurrentTime();
+		api.register(modCurrentTime);
+		
+		modMemmory = new ModMemmory();
+		api.register(modMemmory);
+		
+		modItemCounter = new ModItemCounter();
+		api.register(modItemCounter);
 
+	}
+	
+	public static ModItemCounter getModItemCounter() {
+		return modItemCounter;
+	}
+	
+	public static ModMemmory getModMemmory() {
+		return modMemmory;
+	}
+	
+	public static ModCurrentTime getModCurrentTime() {
+		return modCurrentTime;
 	}
 	
 	public static ModDirection getModDirection() {

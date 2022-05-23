@@ -41,10 +41,8 @@ public class ModMemmory extends ModDraggable {
         String memoryPercent = String.format("Mem: % 2d%%",new Object[]{Long.valueOf(l * 100L / i)});
 
         
-        System.out.println(allmemmory);
-        System.out.println(memoryPercent);
-        
-        font.drawString(memoryPercent, pos.getAbsoluteX() + 1, pos.getAbsoluteY(),  -1);
+        //font.drawString(memoryPercent, pos.getAbsoluteX() + 1, pos.getAbsoluteY(),  -1);
+        font.drawString(allmemmory, pos.getAbsoluteX() + 1, pos.getAbsoluteY(),  -1);
 	}
 
 }
