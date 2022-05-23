@@ -3,12 +3,12 @@ package net.minecraft.client.gui;
 import java.io.IOException;
 
 import WizClient.gui.GuiMultiplayerIngame;
+import WizClient.gui.ModListGui;
 import WizClient.ui.WizClientMainMenu;
 import net.minecraft.client.gui.achievement.GuiAchievements;
 import net.minecraft.client.gui.achievement.GuiStats;
 import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.client.resources.I18n;
-import net.minecraft.realms.RealmsBridge;
 
 public class GuiIngameMenu extends GuiScreen
 {
@@ -35,6 +35,7 @@ public class GuiIngameMenu extends GuiScreen
         this.buttonList.add(new GuiButton(4, this.width / 2 - 100, this.height / 4 + 24 + i, I18n.format("menu.returnToGame", new Object[0])));
         this.buttonList.add(new GuiButton(0, this.width / 2 - 100, this.height / 4 + 96 + i, 98, 20, I18n.format("menu.options", new Object[0])));
         
+        this.buttonList.add(new GuiButton(8, this.width / 2 - 100, this.height / 4 + 72 + i, "Mods"));
         
         if(mc.isSingleplayer()) {
         	GuiButton guibutton;
@@ -74,8 +75,7 @@ public class GuiIngameMenu extends GuiScreen
                 }
                 else if (flag1)
                 {
-                    RealmsBridge realmsbridge = new RealmsBridge();
-                    realmsbridge.switchToRealms(new WizClientMainMenu());
+
                 }
                 else
                 {
@@ -103,6 +103,10 @@ public class GuiIngameMenu extends GuiScreen
             case 7:
                 this.mc.displayGuiScreen(new GuiShareToLan(this));
                 
+            case 8:
+            	this.mc.displayGuiScreen(new ModListGui());
+            	break;
+            	
             case 100:
             	this.mc.displayGuiScreen(new GuiMultiplayerIngame());
         }

@@ -137,7 +137,7 @@ public class Gui
     /**
      * Draws a textured rectangle at the stored z-value. Args: x, y, u, v, width, height
      */
-    public static void drawTexturedModalRect(int x, int y, int textureX, int textureY, int width, int height)
+    public void drawTexturedModalRect(int x, int y, int textureX, int textureY, int width, int height)
     {
         float f = 0.00390625F;
         float f1 = 0.00390625F;
