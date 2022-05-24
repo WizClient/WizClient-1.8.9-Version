@@ -1,6 +1,9 @@
 package net.minecraft.client.gui.inventory;
 
 import com.google.common.collect.Sets;
+
+import WizClient.event.impl.RenderEvent;
+
 import java.io.IOException;
 import java.util.Set;
 import net.minecraft.client.Minecraft;
@@ -98,6 +101,8 @@ public abstract class GuiContainer extends GuiScreen
      */
     public void drawScreen(int mouseX, int mouseY, float partialTicks)
     {
+    	new RenderEvent().call();
+    	
         this.drawDefaultBackground();
         int i = this.guiLeft;
         int j = this.guiTop;
