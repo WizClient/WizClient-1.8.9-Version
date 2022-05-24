@@ -104,6 +104,8 @@ import net.optifine.util.MemoryMonitor;
 import net.optifine.util.TextureUtils;
 import net.optifine.util.TimedEvent;
 
+
+@SuppressWarnings("all")
 public class EntityRenderer implements IResourceManagerReloadListener
 {
     private static final Logger logger = LogManager.getLogger();
@@ -1454,7 +1456,6 @@ public class EntityRenderer implements IResourceManagerReloadListener
     public void renderStreamIndicator(float partialTicks)
     {
         this.setupOverlayRendering();
-        this.mc.ingameGUI.renderStreamIndicator(new ScaledResolution(this.mc));
     }
 
     private boolean isDrawBlockOutline()

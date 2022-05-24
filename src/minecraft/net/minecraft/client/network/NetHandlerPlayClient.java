@@ -29,8 +29,6 @@ import net.minecraft.client.gui.GuiMerchant;
 import net.minecraft.client.gui.GuiMultiplayer;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.GuiScreenBook;
-import net.minecraft.client.gui.GuiScreenDemo;
-import net.minecraft.client.gui.GuiScreenRealmsProxy;
 import net.minecraft.client.gui.GuiWinGame;
 import net.minecraft.client.gui.GuiYesNo;
 import net.minecraft.client.gui.GuiYesNoCallback;
@@ -45,9 +43,9 @@ import net.minecraft.client.player.inventory.ContainerLocalMenu;
 import net.minecraft.client.player.inventory.LocalBlockIntercommunication;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.settings.GameSettings;
-import net.minecraft.client.stream.MetadataAchievement;
-import net.minecraft.client.stream.MetadataCombat;
-import net.minecraft.client.stream.MetadataPlayerDeath;
+import net.minecraft.client.util.metadata.MetadataAchievement;
+import net.minecraft.client.util.metadata.MetadataCombat;
+import net.minecraft.client.util.metadata.MetadataPlayerDeath;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.DataWatcher;
 import net.minecraft.entity.Entity;
@@ -178,7 +176,6 @@ import net.minecraft.network.play.server.S47PacketPlayerListHeaderFooter;
 import net.minecraft.network.play.server.S48PacketResourcePackSend;
 import net.minecraft.network.play.server.S49PacketUpdateEntityNBT;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.realms.DisconnectedRealmsScreen;
 import net.minecraft.scoreboard.IScoreObjectiveCriteria;
 import net.minecraft.scoreboard.Score;
 import net.minecraft.scoreboard.ScoreObjective;
@@ -214,6 +211,8 @@ import net.minecraft.world.storage.MapData;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+
+@SuppressWarnings("all")
 public class NetHandlerPlayClient implements INetHandlerPlayClient
 {
     private static final Logger logger = LogManager.getLogger();
@@ -796,13 +795,7 @@ public class NetHandlerPlayClient implements INetHandlerPlayClient
     {
         this.gameController.loadWorld((WorldClient)null);
 
-        if (this.guiScreenServer != null)
-        {
-            if (this.guiScreenServer instanceof GuiScreenRealmsProxy)
-            {
-                this.gameController.displayGuiScreen((new DisconnectedRealmsScreen(((GuiScreenRealmsProxy)this.guiScreenServer).func_154321_a(), "disconnect.lost", reason)).getProxy());
-            }
-            else
+        if (this.guiScreenServer != null) { 
             {
                 this.gameController.displayGuiScreen(new GuiDisconnected(this.guiScreenServer, "disconnect.lost", reason));
             }
@@ -1392,9 +1385,8 @@ public class NetHandlerPlayClient implements INetHandlerPlayClient
         {
             GameSettings gamesettings = this.gameController.gameSettings;
 
-            if (f == 0.0F)
-            {
-                this.gameController.displayGuiScreen(new GuiScreenDemo());
+            if (f == 0.0F) {
+                
             }
             else if (f == 101.0F)
             {
@@ -1473,8 +1465,6 @@ public class NetHandlerPlayClient implements INetHandlerPlayClient
                 {
                     Achievement achievement = (Achievement)statbase;
                     this.gameController.guiAchievement.displayAchievement(achievement);
-                    this.gameController.getTwitchStream().func_152911_a(new MetadataAchievement(achievement), 0L);
-
                     if (statbase == AchievementList.openInventory)
                     {
                         this.gameController.gameSettings.showInventoryAchievementHint = false;
@@ -1524,7 +1514,6 @@ public class NetHandlerPlayClient implements INetHandlerPlayClient
         {
             long i = (long)(1000 * packetIn.field_179772_d / 20);
             MetadataCombat metadatacombat = new MetadataCombat(this.gameController.thePlayer, entitylivingbase);
-            this.gameController.getTwitchStream().func_176026_a(metadatacombat, 0L - i, 0L);
         }
         else if (packetIn.eventType == S42PacketCombatEvent.Event.ENTITY_DIED)
         {
@@ -1534,7 +1523,6 @@ public class NetHandlerPlayClient implements INetHandlerPlayClient
             {
                 MetadataPlayerDeath metadataplayerdeath = new MetadataPlayerDeath((EntityPlayer)entity1, entitylivingbase);
                 metadataplayerdeath.func_152807_a(packetIn.deathMessage);
-                this.gameController.getTwitchStream().func_152911_a(metadataplayerdeath, 0L);
             }
         }
     }

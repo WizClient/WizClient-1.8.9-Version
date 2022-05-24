@@ -27,7 +27,6 @@ import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.resources.I18n;
-import net.minecraft.client.stream.TwitchStream;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EnumPlayerModelParts;
 import net.minecraft.network.play.client.C15PacketClientSettings;
@@ -54,6 +53,8 @@ import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
 
+
+@SuppressWarnings("all")
 public class GameSettings
 {
     private static final Logger gson = LogManager.getLogger();
@@ -296,7 +297,6 @@ public class GameSettings
 
     
 
-    
     public GameSettings(Minecraft mcIn, File optionsFileIn)
     {
         this.mc = (KeyBinding[])((KeyBinding[])ArrayUtils.addAll(new KeyBinding[] {this.keyBindPickBlock, this.keyBindDrop, this.keyBindLeft, this.keyBindBack, this.keyBindRight, this.keyBindJump, this.keyBindSneak, this.keyBindSprint, this.keyBindInventory, this.keyBindAttack, this.keyBindUseItem, this.keyBindPlayerList, this.keyBindCommand, this.keyBindChat, this.keyBindScreenshot, this.keyBindTogglePerspective, this.keyBindSmoothCamera, this.keyBindFullscreen, this.keyBindStreamPauseUnpause, this.keyBindStreamCommercials, this.keyBindStreamToggleMic, this.keyBindsHotbar, this.keyBindSpectatorOutlines, this.keyBindStreamStartStop, this.CLIENT_GUI_MOD_POS, this.CLIENT_GUI_MOD_TOGGLE_FULLBRIGHT}, this.keyBindings));
@@ -488,13 +488,11 @@ public class GameSettings
         if (settingsOption == GameSettings.Options.STREAM_VOLUME_MIC)
         {
             this.streamMicVolume = value;
-            this.difficulty.getTwitchStream().updateStreamVolume();
         }
 
         if (settingsOption == GameSettings.Options.STREAM_VOLUME_SYSTEM)
         {
             this.streamGameVolume = value;
-            this.difficulty.getTwitchStream().updateStreamVolume();
         }
 
         if (settingsOption == GameSettings.Options.STREAM_KBPS)
@@ -812,7 +810,7 @@ public class GameSettings
             {
                 float f1 = this.getOptionFloatValue(settingOption);
                 float f = settingOption.normalizeValue(f1);
-                return settingOption == GameSettings.Options.MIPMAP_LEVELS && (double)f1 >= 4.0D ? s1 + Lang.get("of.general.max") : (settingOption == GameSettings.Options.SENSITIVITY ? (f == 0.0F ? s1 + I18n.format("options.sensitivity.min", new Object[0]) : (f == 1.0F ? s1 + I18n.format("options.sensitivity.max", new Object[0]) : s1 + (int)(f * 200.0F) + "%")) : (settingOption == GameSettings.Options.FOV ? (f1 == 70.0F ? s1 + I18n.format("options.fov.min", new Object[0]) : (f1 == 110.0F ? s1 + I18n.format("options.fov.max", new Object[0]) : s1 + (int)f1)) : (settingOption == GameSettings.Options.FRAMERATE_LIMIT ? (f1 == settingOption.$VALUES ? s1 + I18n.format("options.framerateLimit.max", new Object[0]) : s1 + (int)f1 + " fps") : (settingOption == GameSettings.Options.RENDER_CLOUDS ? (f1 == settingOption.valueMax ? s1 + I18n.format("options.cloudHeight.min", new Object[0]) : s1 + ((int)f1 + 128)) : (settingOption == GameSettings.Options.GAMMA ? (f == 0.0F ? s1 + I18n.format("options.gamma.min", new Object[0]) : (f == 1.0F ? s1 + I18n.format("options.gamma.max", new Object[0]) : s1 + "+" + (int)(f * 100.0F) + "%")) : (settingOption == GameSettings.Options.SATURATION ? s1 + (int)(f * 400.0F) + "%" : (settingOption == GameSettings.Options.CHAT_OPACITY ? s1 + (int)(f * 90.0F + 10.0F) + "%" : (settingOption == GameSettings.Options.CHAT_HEIGHT_UNFOCUSED ? s1 + GuiNewChat.calculateChatboxHeight(f) + "px" : (settingOption == GameSettings.Options.CHAT_HEIGHT_FOCUSED ? s1 + GuiNewChat.calculateChatboxHeight(f) + "px" : (settingOption == GameSettings.Options.CHAT_WIDTH ? s1 + GuiNewChat.calculateChatboxWidth(f) + "px" : (settingOption == GameSettings.Options.RENDER_DISTANCE ? s1 + (int)f1 + " chunks" : (settingOption == GameSettings.Options.MIPMAP_LEVELS ? (f1 == 0.0F ? s1 + I18n.format("options.off", new Object[0]) : s1 + (int)f1) : (settingOption == GameSettings.Options.STREAM_FPS ? s1 + TwitchStream.formatStreamFps(f) + " fps" : (settingOption == GameSettings.Options.STREAM_KBPS ? s1 + TwitchStream.formatStreamKbps(f) + " Kbps" : (settingOption == GameSettings.Options.STREAM_BYTES_PER_PIXEL ? s1 + String.format("%.3f bpp", new Object[] {Float.valueOf(TwitchStream.formatStreamBps(f))}): (f == 0.0F ? s1 + I18n.format("options.off", new Object[0]) : s1 + (int)(f * 100.0F) + "%"))))))))))))))));
+                return settingOption == GameSettings.Options.MIPMAP_LEVELS && (double)f1 >= 4.0D ? s1 + Lang.get("of.general.max") : (settingOption == GameSettings.Options.SENSITIVITY ? (f == 0.0F ? s1 + I18n.format("options.sensitivity.min", new Object[0]) : (f == 1.0F ? s1 + I18n.format("options.sensitivity.max", new Object[0]) : s1 + (int)(f * 200.0F) + "%")) : (settingOption == GameSettings.Options.FOV ? (f1 == 70.0F ? s1 + I18n.format("options.fov.min", new Object[0]) : (f1 == 110.0F ? s1 + I18n.format("options.fov.max", new Object[0]) : s1 + (int)f1)) : (settingOption == GameSettings.Options.FRAMERATE_LIMIT ? (f1 == settingOption.$VALUES ? s1 + I18n.format("options.framerateLimit.max", new Object[0]) : s1 + (int)f1 + " fps") : (settingOption == GameSettings.Options.RENDER_CLOUDS ? (f1 == settingOption.valueMax ? s1 + I18n.format("options.cloudHeight.min", new Object[0]) : s1 + ((int)f1 + 128)) : (settingOption == GameSettings.Options.GAMMA ? (f == 0.0F ? s1 + I18n.format("options.gamma.min", new Object[0]) : (f == 1.0F ? s1 + I18n.format("options.gamma.max", new Object[0]) : s1 + "+" + (int)(f * 100.0F) + "%")) : (settingOption == GameSettings.Options.SATURATION ? s1 + (int)(f * 400.0F) + "%" : (settingOption == GameSettings.Options.CHAT_OPACITY ? s1 + (int)(f * 90.0F + 10.0F) + "%" : (settingOption == GameSettings.Options.CHAT_HEIGHT_UNFOCUSED ? s1 + GuiNewChat.calculateChatboxHeight(f) + "px" : (settingOption == GameSettings.Options.CHAT_HEIGHT_FOCUSED ? s1 + GuiNewChat.calculateChatboxHeight(f) + "px" : (settingOption == GameSettings.Options.CHAT_WIDTH ? s1 + GuiNewChat.calculateChatboxWidth(f) + "px" : (settingOption == GameSettings.Options.RENDER_DISTANCE ? s1 + (int)f1 + " chunks" : (settingOption == GameSettings.Options.MIPMAP_LEVELS ? (f1 == 0.0F ? s1 + I18n.format("options.off", new Object[0]) : s1 + (int)f1) : (settingOption == GameSettings.Options.STREAM_FPS ? s1 + " fps" : (settingOption == GameSettings.Options.STREAM_KBPS ? s1 + " Kbps" : (settingOption == GameSettings.Options.STREAM_BYTES_PER_PIXEL ? s1 + String.format("%.3f bpp", new Object[] {Float.valueOf((f))}): (f == 0.0F ? s1 + I18n.format("options.off", new Object[0]) : s1 + (int)(f * 100.0F) + "%"))))))))))))))));
             }
             else if (settingOption.getEnumBoolean())
             {
@@ -2128,12 +2126,11 @@ public class GameSettings
         }
     }
 
-    private String getKeyBindingOF(GameSettings.Options p_getKeyBindingOF_1_)
+	private String getKeyBindingOF(GameSettings.Options p_getKeyBindingOF_1_)
     {
         String s = I18n.format(p_getKeyBindingOF_1_.getEnumString(), new Object[0]) + ": ";
 
-        if (s == null)
-        {
+        if (s == null) {
             s = p_getKeyBindingOF_1_.getEnumString();
         }
 

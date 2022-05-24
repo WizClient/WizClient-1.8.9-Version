@@ -15,6 +15,7 @@ public class ModDirection extends ModDraggable {
     protected static ScaledResolution scaledResolution;
     public static String markerColor = "c";
     public static int compassIndex = 0;
+    Gui gui = new Gui();
 
 	@Override
 	public int getWidth() {
@@ -35,9 +36,9 @@ public class ModDirection extends ModDraggable {
         
         mc.getTextureManager().bindTexture(new ResourceLocation("WizClient/Direction.png"));
         if (direction < 128) {
-        	Gui.drawTexturedModalRect(pos.getAbsoluteX() + xBase - 64, pos.getAbsoluteY() + yBase - 10, direction, this.compassIndex * 24, 100, 13);
+        	gui.drawTexturedModalRect(pos.getAbsoluteX() + xBase - 64, pos.getAbsoluteY() + yBase - 10, direction, this.compassIndex * 24, 100, 13);
         } else {
-            Gui.drawTexturedModalRect(pos.getAbsoluteX() + xBase - 64, pos.getAbsoluteY() + yBase - 10, direction - 128, this.compassIndex * 24 + 12, 100, 13);
+            gui.drawTexturedModalRect(pos.getAbsoluteX() + xBase - 64, pos.getAbsoluteY() + yBase - 10, direction - 128, this.compassIndex * 24 + 12, 100, 13);
         }
 
         mc.fontRendererObj.drawString("§" + this.markerColor.toLowerCase() + "|§r", pos.getAbsoluteX() + xBase - 16, pos.getAbsoluteY() + yBase - 7, 16777215);
@@ -51,11 +52,11 @@ public class ModDirection extends ModDraggable {
         int yBase = getY(1, 12);
         int xBase = getX(65);
         
-        mc.getTextureManager().bindTexture(new ResourceLocation("BlackClient/Modlar/Pusula.png"));
+        mc.getTextureManager().bindTexture(new ResourceLocation("WizClient/Direction.png"));
         if (direction < 128) {
-        	Gui.drawTexturedModalRect(pos.getAbsoluteX() + xBase - 64, pos.getAbsoluteY() + yBase - 10, direction, this.compassIndex * 24, 100, 13);
+			gui.drawTexturedModalRect(pos.getAbsoluteX() + xBase - 64, pos.getAbsoluteY() + yBase - 10, direction, this.compassIndex * 24, 100, 13);
         } else {
-            Gui.drawTexturedModalRect(pos.getAbsoluteX() + xBase - 64, pos.getAbsoluteY() + yBase - 10, direction - 128, this.compassIndex * 24 + 12, 100, 13);
+            gui.drawTexturedModalRect(pos.getAbsoluteX() + xBase - 64, pos.getAbsoluteY() + yBase - 10, direction - 128, this.compassIndex * 24 + 12, 100, 13);
         }
 
         mc.fontRendererObj.drawString("§" + this.markerColor.toLowerCase() + "|§r", pos.getAbsoluteX() + xBase - 16, pos.getAbsoluteY() + yBase - 7, 16777215);
@@ -70,15 +71,5 @@ public class ModDirection extends ModDraggable {
         return height;
     }
     
-    public static enum Direction {
-        S,
-        SW,
-        W,
-        NW,
-        N,
-        NE,
-        E,
-        SE;
-     }
 
 }
