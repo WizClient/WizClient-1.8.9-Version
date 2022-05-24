@@ -32,8 +32,11 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.AbstractClientPlayer;
 import net.minecraft.client.gui.GuiChat;
 import net.minecraft.client.gui.GuiDownloadTerrain;
+import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.MapItemRenderer;
 import net.minecraft.client.gui.ScaledResolution;
+import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.client.gui.inventory.GuiContainerCreative;
 import net.minecraft.client.particle.EffectRenderer;
 import net.minecraft.client.renderer.chunk.RenderChunk;
 import net.minecraft.client.renderer.culling.ClippingHelper;
@@ -942,6 +945,7 @@ public class EntityRenderer implements IResourceManagerReloadListener
 
         if (this.debugView)
         {
+ 
             switch (this.debugViewDirection)
             {
                 case 0:
@@ -1320,6 +1324,7 @@ public class EntityRenderer implements IResourceManagerReloadListener
 
         if (!this.mc.skipRenderWorld)
         {
+        	
             anaglyphEnable = this.mc.gameSettings.anaglyph;
             final ScaledResolution scaledresolution = new ScaledResolution(this.mc);
             int i1 = scaledresolution.getScaledWidth();
@@ -1327,7 +1332,6 @@ public class EntityRenderer implements IResourceManagerReloadListener
             final int k1 = Mouse.getX() * i1 / this.mc.displayWidth;
             final int l1 = j1 - Mouse.getY() * j1 / this.mc.displayHeight - 1;
             int i2 = this.mc.gameSettings.limitFramerate;
-
             if (this.mc.theWorld != null)
             {
                 this.mc.mcProfiler.startSection("level");
@@ -1430,9 +1434,11 @@ public class EntityRenderer implements IResourceManagerReloadListener
                     throw new ReportedException(crashreport);
                 }
             }
-        }
-        
-        new RenderEvent().call();
+        }       
+
+        if (!(mc.currentScreen instanceof GuiContainer)) {
+        	new RenderEvent().call();
+		}
         
         this.frameFinish();
         this.waitForServerThread();
@@ -1514,6 +1520,7 @@ public class EntityRenderer implements IResourceManagerReloadListener
 
     public void renderWorld(float partialTicks, long finishTimeNano)
     {
+    	
         this.updateLightmap(partialTicks);
 
         if (this.mc.getRenderViewEntity() == null)
