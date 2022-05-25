@@ -1,4 +1,4 @@
-package net.minecraft.client.stream;
+package net.minecraft.client.metadata;
 
 import net.minecraft.stats.Achievement;
 

@@ -17,8 +17,8 @@ public class ModKeyStrokes extends ModDraggable{
 		
 		ZQSD(Key.forward, Key.left, Key.back, Key.right),
 		ZQSD_MOUSE(Key.forward, Key.left, Key.back, Key.right, Key.LMB, Key.RMB),
-		ZQSD_SPRINT(Key.forward, Key.left, Key.back, Key.right, new Key("Space", Minecraft.getMinecraft().gameSettings.keyBindSneak, 1, 41, 58, 18)),
-		ZQSD_SPRINT_MOUSE(Key.forward, Key.left, Key.back, Key.right, Key.LMB, Key.RMB, new Key("Space", Minecraft.getMinecraft().gameSettings.keyBindSneak, 1, 61, 58, 18))
+		ZQSD_SPRINT(Key.forward, Key.left, Key.back, Key.right, new Key("§m-----", Minecraft.getMinecraft().gameSettings.keyBindSneak, 1, 41, 58, 18)),
+		ZQSD_SPRINT_MOUSE(Key.forward, Key.left, Key.back, Key.right, Key.LMB, Key.RMB, new Key("§m-----", Minecraft.getMinecraft().gameSettings.keyBindSneak, 1, 61, 58, 18))
 		;
 		
 		private final Key[] keys;

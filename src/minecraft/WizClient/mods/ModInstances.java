@@ -6,6 +6,7 @@ import WizClient.mods.impl.ModCPS;
 import WizClient.mods.impl.ModCoords;
 import WizClient.mods.impl.ModCurrentTime;
 import WizClient.mods.impl.ModFPS;
+import WizClient.mods.impl.ModFullBright;
 import WizClient.mods.impl.ModItemCounter;
 import WizClient.mods.impl.ModKeyStrokes;
 import WizClient.mods.impl.ModMemmory;
@@ -30,6 +31,7 @@ public class ModInstances {
 	private static ModCurrentTime modCurrentTime;
 	private static ModMemmory modMemmory;
 	private static ModItemCounter modItemCounter;
+	private static ModFullBright modFullBright;
 	
 	public static void register(HUDManager api) {
 		
@@ -71,7 +73,14 @@ public class ModInstances {
 		
 		modItemCounter = new ModItemCounter();
 		api.register(modItemCounter);
+		
+		modFullBright = new ModFullBright();
+		api.register(modFullBright);
 
+	}
+	
+	public static ModFullBright getModFullBright() {
+		return modFullBright;
 	}
 	
 	public static ModItemCounter getModItemCounter() {

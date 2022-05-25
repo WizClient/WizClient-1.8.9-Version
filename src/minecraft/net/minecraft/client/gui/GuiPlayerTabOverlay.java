@@ -3,6 +3,8 @@ package net.minecraft.client.gui;
 import com.google.common.collect.ComparisonChain;
 import com.google.common.collect.Ordering;
 import com.mojang.authlib.GameProfile;
+
+import java.awt.Color;
 import java.util.Comparator;
 import java.util.List;
 import net.minecraft.client.Minecraft;
@@ -27,6 +29,7 @@ public class GuiPlayerTabOverlay extends Gui
     private final GuiIngame guiIngame;
     private IChatComponent footer;
     private IChatComponent header;
+    private FontRenderer font;
 
     /**
      * The last time the playerlist was opened (went from not being renderd, to being rendered)
@@ -63,6 +66,21 @@ public class GuiPlayerTabOverlay extends Gui
 
         this.isBeingRendered = willBeRendered;
     }
+    
+    
+    protected void writePing(int p_175245_1_, int p_175245_2_, int p_175245_3_, NetworkPlayerInfo networkPlayerInfoIn) 
+	{
+	    
+	    Color pingColor = new Color(0,0,0);	
+	    
+	    if(networkPlayerInfoIn.getResponseTime() < 150) pingColor = new Color(68, 183, 69);
+	    if(networkPlayerInfoIn.getResponseTime() >= 150) pingColor = new Color(0, 112, 0);
+	    if(networkPlayerInfoIn.getResponseTime() > 299) pingColor = new Color(221, 67, 67);
+	    
+	    this.mc.fontRendererObj.drawString(networkPlayerInfoIn.getResponseTime()  + " ", p_175245_2_ + p_175245_1_ - 11, p_175245_3_, pingColor.getRGB());
+ 
+	}
+    
 
     /**
      * Renders the playerlist, its background, headers and footers.
@@ -216,7 +234,11 @@ public class GuiPlayerTabOverlay extends Gui
                     }
                 }
 
-                this.drawPing(i1, j2 - (flag ? 9 : 0), k2, networkplayerinfo1);
+                
+                // ICI
+                
+                writePing(i1, j2 - (flag ? 9 : 0) + 6, k2 + 1, networkplayerinfo1);
+                //this.drawPing(i1, j2 - (flag ? 9 : 0), k2, networkplayerinfo1);
             }
         }
 

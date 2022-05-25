@@ -5,6 +5,7 @@ import java.io.IOException;
 
 import org.lwjgl.input.Keyboard;
 
+import WizClient.event.impl.RenderEvent;
 import net.minecraft.client.gui.GuiScreen;
 
 public class ModListGui extends GuiScreen {
@@ -39,7 +40,10 @@ public class ModListGui extends GuiScreen {
 	
 	@Override
 	public void drawScreen(int mouseX, int mouseY, float partialTicks) {
+		new RenderEvent().call();
 		super.drawScreen(mouseX, mouseY, partialTicks);
+		//new RenderEvent().call();
+		drawDefaultBackground();
 		updateScreen();
 		this.drawRect(0, 0, 0 + fadeIn - fadeOut, this.height, new Color(40, 40, 40).getRGB());
 	}

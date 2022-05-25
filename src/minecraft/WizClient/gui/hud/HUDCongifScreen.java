@@ -14,6 +14,10 @@ import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.ScaledResolution;
 
 public class HUDCongifScreen extends GuiScreen {
+
+    private boolean dragged = false;
+
+    protected boolean hovered;
 	
 	private static HashMap<IRenderer, ScreenPosition> renderers = new HashMap<IRenderer, ScreenPosition>();
 	
@@ -53,7 +57,6 @@ public class HUDCongifScreen extends GuiScreen {
 		
 		this.drawHollowRect(0, 0, this.width - 1, this.height - 1, new Color(69, 195, 218).getRGB());
 		
-		
 		for(IRenderer renderer : renderers.keySet()) {
 			
 			ScreenPosition pos = renderers.get(renderer);
@@ -61,11 +64,29 @@ public class HUDCongifScreen extends GuiScreen {
 			renderer.renderDummy(pos);
 			
 			
+			int absoluteX = pos.getAbsoluteX();
+            int absoluteY = pos.getAbsoluteY();
+
+            this.hovered = mouseX >= absoluteX && mouseX <= absoluteX + renderer.getWidth() && mouseY >= absoluteY && mouseY <= absoluteY + renderer.getHeight();
+
+            if (this.hovered) {
+                if (dragged) {
+                    pos.setAbsolute(pos.getAbsoluteX() + mouseX - this.prevX, pos.getAbsoluteY() + mouseY - this.prevY);
+
+                    adjustBounds(renderer, pos);
+
+                    this.prevX = mouseX;
+                    this.prevY = mouseY;
+                }
+            }
+			
+			
 			this.drawHollowRect(pos.getAbsoluteX(), pos.getAbsoluteY(), renderer.getWidth(), renderer.getHeight(), new Color(147, 82, 244).getRGB());
 			
 		}
-		
+        
 		this.zLevel = zBackup;
+		updateScreen();
 	}
 	
 	private void drawHollowRect(int x, int y, int w, int h, int color) {
@@ -92,7 +113,7 @@ public class HUDCongifScreen extends GuiScreen {
 		if(selectedRenderer.isPresent()) {
 			moveSelectedRendererBy(x - prevX, y - prevY);
 		}
-		
+		updateScreen();
 		this.prevX = x;
 		this.prevY = y;
 	}
@@ -103,8 +124,8 @@ public class HUDCongifScreen extends GuiScreen {
 		ScreenPosition pos = renderers.get(renderer);
 		
 		pos.setAbsolute(pos.getAbsoluteX() + offsetX, pos.getAbsoluteY() + offsetY);
-		
 		adjustBounds(renderer, pos);
+
 	}
 	
 	@Override
@@ -141,10 +162,21 @@ public class HUDCongifScreen extends GuiScreen {
 	@Override
 	protected void mouseClicked(int x, int y, int button) throws IOException {
 		this.prevX = x;
-		this.prevY = y;
-		
-		loadMouseOver(x, y);
+        this.prevY = y;
+
+        dragged = true;
+
+        loadMouseOver(x, y);
+        super.mouseClicked(x, y, button);
 	}
+	
+	@Override
+    protected void mouseReleased(int mouseX, int mouseY, int state) {
+
+        dragged = false;
+
+        super.mouseReleased(mouseX, mouseY, state);
+    }
 	
 	private void loadMouseOver(int x, int y) {
 		this.selectedRenderer = renderers.keySet().stream().filter(new MouseOverFinder(x, y)).findFirst();

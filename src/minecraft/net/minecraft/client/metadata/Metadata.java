@@ -1,4 +1,4 @@
-package net.minecraft.client.stream;
+package net.minecraft.client.metadata;
 
 import com.google.common.base.Objects;
 import com.google.common.collect.Maps;
