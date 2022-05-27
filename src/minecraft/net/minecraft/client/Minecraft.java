@@ -237,6 +237,11 @@ public class Minecraft implements IThreadListener, IPlayerUsage
     /** The font renderer used for displaying and measuring text */
     public FontRenderer fontRendererObj;
     public FontRenderer standardGalacticFontRenderer;
+    
+    
+    /** The COSTOM font Of WizClient */
+    
+   public FontRenderer clientFont;
 
     /** The GuiScreen that's being displayed at the moment. */
     public GuiScreen currentScreen;

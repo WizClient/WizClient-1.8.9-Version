@@ -2,8 +2,7 @@ package net.minecraft.client.gui;
 
 import java.awt.Color;
 
-import WizClient.font.FontUtil;
-import WizClient.gui.UnicodeFontRenderer;
+import WizClient.util.UnicodeFontRenderer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.PositionedSoundRecord;
 import net.minecraft.client.audio.SoundHandler;

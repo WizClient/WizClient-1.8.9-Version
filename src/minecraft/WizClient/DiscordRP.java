@@ -44,6 +44,33 @@ public class DiscordRP {
 		b.setDetails(firtLine);
 		b.setStartTimestamps(created);
 		
+		if(secondLine == "In Game") {
+			switch (firtLine) {
+			case "Playing mc.hypixel.net":
+				b.setSmallImage("hypixel_logo", "");
+				break;
+			case "Playing na.minemen.club":
+				b.setSmallImage("minemen_logo", "");
+				break;
+			case "Playing connect.2b2t.org":
+				b.setSmallImage("2b2t_logo", "");
+				break;
+			case "Playing mc.erisium.com":
+				b.setSmallImage("erisium_logo", "");
+				break;
+			case "Playing play.rinaorc.com":
+				b.setSmallImage("rinaorc_logo", "");
+				break;
+			case "Playing play.goldenuhc.e":
+				b.setSmallImage("goldenuhc_logo", "");
+				break;
+			default:
+				break;
+			}
+		}
+		
+
+		
 		DiscordRPC.discordUpdatePresence(b.build());
 		
 	}

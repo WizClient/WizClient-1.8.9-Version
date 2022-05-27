@@ -4,6 +4,9 @@ import com.google.common.collect.ComparisonChain;
 import com.google.common.collect.Ordering;
 import com.mojang.authlib.GameProfile;
 
+import WizClient.Client;
+import WizClient.util.UnicodeFontRenderer;
+
 import java.awt.Color;
 import java.util.Comparator;
 import java.util.List;
@@ -29,6 +32,8 @@ public class GuiPlayerTabOverlay extends Gui
     private final GuiIngame guiIngame;
     private IChatComponent footer;
     private IChatComponent header;
+    
+    private UnicodeFontRenderer ufr;
     private FontRenderer font;
 
     /**
@@ -71,14 +76,20 @@ public class GuiPlayerTabOverlay extends Gui
     protected void writePing(int p_175245_1_, int p_175245_2_, int p_175245_3_, NetworkPlayerInfo networkPlayerInfoIn) 
 	{
 	    
+    	
 	    Color pingColor = new Color(0,0,0);	
 	    
 	    if(networkPlayerInfoIn.getResponseTime() < 150) pingColor = new Color(68, 183, 69);
 	    if(networkPlayerInfoIn.getResponseTime() >= 150) pingColor = new Color(0, 112, 0);
 	    if(networkPlayerInfoIn.getResponseTime() > 299) pingColor = new Color(221, 67, 67);
 	    
-	    this.mc.fontRendererObj.drawString(networkPlayerInfoIn.getResponseTime()  + " ", p_175245_2_ + p_175245_1_ - 11, p_175245_3_, pingColor.getRGB());
- 
+	    if(ufr == null) {
+			ufr = UnicodeFontRenderer.getFontOnPC("arial", 15);
+		}
+	    
+	    ufr.drawCenteredString(networkPlayerInfoIn.getResponseTime()  + " ", p_175245_2_ + p_175245_1_ - 10, p_175245_3_ - 1, pingColor.getRGB());
+	    //this.drawString(font, networkPlayerInfoIn.getResponseTime()  + " ", p_175245_2_ + p_175245_1_ - 10, p_175245_3_ - 1, pingColor.getRGB());
+	    //font.drawString(font, networkPlayerInfoIn.getResponseTime()  + " ", p_175245_2_ + p_175245_1_ - 10, p_175245_3_ - 1,);
 	}
     
 

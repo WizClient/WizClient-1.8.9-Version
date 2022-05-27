@@ -2,7 +2,7 @@ package net.minecraft.client.gui;
 
 import com.google.common.collect.Lists;
 
-import WizClient.gui.UnicodeFontRenderer;
+import WizClient.util.UnicodeFontRenderer;
 
 import java.util.List;
 import net.minecraft.client.Minecraft;

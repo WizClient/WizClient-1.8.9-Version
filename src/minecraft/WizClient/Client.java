@@ -13,8 +13,6 @@ import net.minecraft.src.Config;
 
 
 public class Client {
-	
-	private boolean fullbright;
 
 	private EntityPlayer player;
 	
@@ -33,8 +31,6 @@ public class Client {
 		discordRP.start();
 		FileManager.init();
 		EventManager.register(this);
-		//FontUtil.bootstrap();
-		//FontUtil.test();
 		
 	}
 	
@@ -53,6 +49,7 @@ public class Client {
 		return discordRP;
 	}
 	
+	
 	@EventTarget
 	public void onTick(ClientTickEvent e) {
 		hudManager = HUDManager.getInstance();
@@ -67,7 +64,14 @@ public class Client {
 		}
 	}
 	
+	
 }
+
+
+
+// NotificationManager.show(new Notification(NotificationType.INFO, "JUMP", "You jumped", 1)
+
+// dans GuiIngame il faut mettre NotificationManager.render();
 
 /*
 package clientname.mods.impl;

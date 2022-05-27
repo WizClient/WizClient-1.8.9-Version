@@ -2,6 +2,7 @@ package WizClient.ui;
 
 import java.awt.Color;
 import java.awt.Desktop;
+import java.awt.Font;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -14,9 +15,9 @@ import com.mojang.authlib.GameProfile;
 import com.mojang.realmsclient.dto.PlayerInfo;
 
 import WizClient.Client;
-import WizClient.gui.UnicodeFontRenderer;
 import WizClient.ui.auth.AltManagerGui;
 import WizClient.util.HeadUtil;
+import WizClient.util.UnicodeFontRenderer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.Gui;
@@ -39,6 +40,7 @@ public class WizClientMainMenu extends GuiScreen {
 	
 	private ResourceLocation buttonTexture = new ResourceLocation("WizClient/gui/Button.png");
 	private ResourceLocation MainIcon = new ResourceLocation("WizClient/gui/clear.png");
+
 	private static UnicodeFontRenderer ufr;
 	
 	@Override
@@ -51,24 +53,20 @@ public class WizClientMainMenu extends GuiScreen {
 		GlStateManager.disableLighting();
 		GlStateManager.disableFog();
         
-		mc.fontRendererObj.drawString(mc.getSession().getUsername(), this.width - this.fontRendererObj.getStringWidth(mc.getSession().getUsername()) - 10, 10, -1);
+		
+		HeadUtil.drawPlayerHead(mc.getSession().getUsername(), this.width - this.fontRendererObj.getStringWidth(mc.getSession().getUsername()) - 30, 5, 16);
+		ufr.drawString(mc.getSession().getUsername(), this.width - this.fontRendererObj.getStringWidth(mc.getSession().getUsername()) - 10, 7, -1);
 
 		GlStateManager.popMatrix();
 		Gui.drawRect(0, 0, 220, this.height, new Color(0, 0, 0, 170).getRGB());
 		
-		
-		if(ufr == null) {
-			ufr = UnicodeFontRenderer.getFontOnPC("Arial", 20);
-		}
 		String copyright = "Copyright Mojang AB. Do not distribute!";
-		this.drawString(this.fontRendererObj, copyright, this.width - this.fontRendererObj.getStringWidth(copyright) - 2, this.height - 10, -1);
+		ufr.drawString(copyright, this.width - this.fontRendererObj.getStringWidth(copyright) + 27, this.height - 13, -1);
+		
 		
 		String ver = "WizClient 1.8.9";
-		this.drawString(this.fontRendererObj, ver, 2, this.height - 10, -1);
+		ufr.drawString( ver, 2, this.height - 12, -1);
 		
-		//ufr.drawString(ver, 2, this.height - 10, -1);
-		
-		HeadUtil.drawPlayerHead(mc.getSession().getUsername(), this.width - this.fontRendererObj.getStringWidth(mc.getSession().getUsername()) - 30, 5, 16);
 		
 		super.drawScreen(mouseX, mouseY, partialTicks);
 		drawlogo();
@@ -78,6 +76,11 @@ public class WizClientMainMenu extends GuiScreen {
 	public void initGui() {
 		Client.getInstance().getDiscordRP().update("Idle", "Main menu");
 		Display.setTitle("Minecraft - WizClient 1.8.9 | " + this.mc.getMinecraft().getSession().getUsername());
+		
+		
+		if(ufr == null) {
+			ufr = UnicodeFontRenderer.getFontOnPC("arial", 20);
+		}
 		
 		
 		ScaledResolution sr = new ScaledResolution(Minecraft.getMinecraft());
