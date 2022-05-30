@@ -117,6 +117,7 @@ public class GuiOptions extends GuiScreen implements GuiYesNoCallback
 
     public void confirmClicked(boolean result, int id)
     {
+    	
         this.mc.displayGuiScreen(this);
 
         if (id == 109 && result && this.mc.theWorld != null)

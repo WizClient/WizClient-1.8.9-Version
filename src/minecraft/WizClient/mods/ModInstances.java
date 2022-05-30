@@ -2,6 +2,7 @@ package WizClient.mods;
 
 import WizClient.gui.hud.HUDManager;
 import WizClient.mods.impl.ModArmorStatus;
+import WizClient.mods.impl.ModBlockOverlay;
 import WizClient.mods.impl.ModCPS;
 import WizClient.mods.impl.ModCoords;
 import WizClient.mods.impl.ModCurrentTime;
@@ -32,6 +33,7 @@ public class ModInstances {
 	private static ModMemmory modMemmory;
 	private static ModItemCounter modItemCounter;
 	private static ModFullBright modFullBright;
+	private static ModBlockOverlay modBlockOverlay;
 	
 	public static void register(HUDManager api) {
 		
@@ -76,6 +78,9 @@ public class ModInstances {
 		
 		modFullBright = new ModFullBright();
 		api.register(modFullBright);
+		
+		modBlockOverlay = new ModBlockOverlay();
+		api.register(modBlockOverlay);
 
 	}
 	
@@ -134,5 +139,8 @@ public class ModInstances {
 	public static ModTargetHUD getModTargetHUD() {
 		return modTargetHUD;
 	}
-
+	
+	public static ModBlockOverlay getModBlockOverlay() {
+		return modBlockOverlay;
+	}
 }

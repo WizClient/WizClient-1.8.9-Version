@@ -48,6 +48,7 @@ public class GuiScreenAddServer extends GuiScreen
 
     public GuiScreenAddServer(GuiScreen p_i1033_1_, ServerData p_i1033_2_)
     {
+    	
         this.parentScreen = p_i1033_1_;
         this.serverData = p_i1033_2_;
     }
@@ -75,6 +76,7 @@ public class GuiScreenAddServer extends GuiScreen
         this.serverNameField = new GuiTextField(0, this.fontRendererObj, this.width / 2 - 100, 66, 200, 20);
         this.serverNameField.setFocused(true);
         this.serverNameField.setText(this.serverData.serverName);
+        
         this.serverIPField = new GuiTextField(1, this.fontRendererObj, this.width / 2 - 100, 106, 200, 20);
         this.serverIPField.setMaxStringLength(128);
         this.serverIPField.setText(this.serverData.serverIP);
@@ -108,9 +110,12 @@ public class GuiScreenAddServer extends GuiScreen
             }
             else if (button.id == 0)
             {
-                this.serverData.serverName = this.serverNameField.getText();
-                this.serverData.serverIP = this.serverIPField.getText();
-                this.parentScreen.confirmClicked(true, 0);
+            	System.out.println("UWU");
+            	
+            	 this.serverData.serverName = this.serverNameField.getText();
+                 this.serverData.serverIP = this.serverIPField.getText();
+                  
+                 this.parentScreen.confirmClicked(true, 0);
             }
         }
     }

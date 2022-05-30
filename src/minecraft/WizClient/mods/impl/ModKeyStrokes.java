@@ -49,8 +49,8 @@ public class ModKeyStrokes extends ModDraggable {
 	
 	private static class Key {
 		
-		private static final Key W = new Key("W", Minecraft.getMinecraft().gameSettings.keyBindLeft, 21, 1, 18, 18);
-		private static final Key A = new Key("A", Minecraft.getMinecraft().gameSettings.keyBindBack, 1, 21, 18, 18);
+		private static final Key W = new Key("Z", Minecraft.getMinecraft().gameSettings.keyBindLeft, 21, 1, 18, 18);
+		private static final Key A = new Key("Q", Minecraft.getMinecraft().gameSettings.keyBindBack, 1, 21, 18, 18);
 		private static final Key S = new Key("S", Minecraft.getMinecraft().gameSettings.keyBindRight, 21, 21, 18, 18);
 		private static final Key D = new Key("D", Minecraft.getMinecraft().gameSettings.keyBindJump, 41, 21, 18, 18);
 		

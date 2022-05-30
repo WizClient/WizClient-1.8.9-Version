@@ -10,6 +10,7 @@ import com.google.common.collect.Sets;
 import WizClient.event.EventManager;
 import WizClient.event.EventTarget;
 import WizClient.event.impl.RenderEvent;
+import WizClient.gui.ModListGui;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiChat;
 import net.minecraft.client.gui.inventory.GuiContainer;
@@ -57,7 +58,7 @@ public class HUDManager {
 	
 	@EventTarget
 	public void onRender(RenderEvent e) {
-		if (mc.currentScreen == null || mc.currentScreen instanceof GuiContainer || mc.currentScreen instanceof GuiChat) {
+		if (mc.currentScreen == null || mc.currentScreen instanceof GuiContainer || mc.currentScreen instanceof GuiChat || mc.currentScreen instanceof ModListGui) {
 			for(IRenderer renderer : registeredRenderers) {
 				callRenderer(renderer);
 			}

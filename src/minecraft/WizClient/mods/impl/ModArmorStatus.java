@@ -5,8 +5,10 @@ import java.util.Iterator;
 
 import org.lwjgl.opengl.GL11;
 
+import WizClient.Client;
 import WizClient.gui.hud.ScreenPosition;
 import WizClient.mods.ModDraggable;
+import WizClient.mods.ModInstances;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -17,7 +19,7 @@ public class ModArmorStatus extends ModDraggable {
 	
 	@Override
 	public int getWidth() {
-		return 64;
+		return 50;
 	}
 
 	@Override
@@ -41,6 +43,7 @@ public class ModArmorStatus extends ModDraggable {
 		renderItemStack(pos, 2, new ItemStack(Items.diamond_chestplate));
 		renderItemStack(pos, 1, new ItemStack(Items.diamond_leggings));
 		renderItemStack(pos, 0, new ItemStack(Items.diamond_boots));
+		
 	}
 
 	private void renderItemStack(ScreenPosition pos, int i, ItemStack is) {

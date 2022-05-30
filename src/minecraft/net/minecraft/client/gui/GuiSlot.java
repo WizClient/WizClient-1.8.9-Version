@@ -479,6 +479,7 @@ public abstract class GuiSlot
 
             if (!(this instanceof GuiResourcePackList) || k >= this.top - this.slotHeight && k <= this.bottom)
             {
+            	
                 this.drawSlot(j, p_148120_1_, k, l, mouseXIn, mouseYIn);
             }
         }

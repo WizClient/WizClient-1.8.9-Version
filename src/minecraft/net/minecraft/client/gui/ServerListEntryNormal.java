@@ -47,6 +47,7 @@ public class ServerListEntryNormal implements GuiListExtended.IGuiListEntry
 
     public void drawEntry(int slotIndex, int x, int y, int listWidth, int slotHeight, int mouseX, int mouseY, boolean isSelected)
     {
+    	
         if (!this.server.field_78841_f)
         {
             this.server.field_78841_f = true;

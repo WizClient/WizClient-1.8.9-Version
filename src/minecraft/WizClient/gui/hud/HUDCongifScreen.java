@@ -25,26 +25,24 @@ public class HUDCongifScreen extends GuiScreen {
 	
 	private int prevX, prevY;
 	
+	private IRenderer draggedmodule;
+	
 	public HUDCongifScreen(HUDManager api) {
-		
-		
 		Collection<IRenderer> registeredRenderers = api.getRegisteredRenderers();
+		renderers.clear();
 		for(IRenderer ren : registeredRenderers) {
-			if(!ren.isEnabled()) {
-				continue;
+			if(ren.isEnabled()) {
+				ScreenPosition pos = ren.load();
+				
+				if(pos == null) {
+					pos = ScreenPosition.fromRelativePosition(0.5, 0.5);
+				}
+				
+				
+				adjustBounds(ren, pos);
+				this.renderers.put(ren, pos);
 			}
 			
-			ScreenPosition pos = ren.load();
-			
-			
-			if(pos == null) {
-				pos = ScreenPosition.fromRelativePosition(0.5, 0.5);
-			}
-			
-			adjustBounds(ren, pos);
-			
-			
-			this.renderers.put(ren, pos);
 			
 		}
 	}
@@ -55,12 +53,11 @@ public class HUDCongifScreen extends GuiScreen {
 		final float zBackup = this.zLevel;
 		this.zLevel = 200;
 		
-		this.drawHollowRect(0, 0, this.width - 1, this.height - 1, new Color(69, 195, 218).getRGB());
 		
+		this.drawHollowRect(0, 0, this.width - 1, this.height - 1, new Color(69, 195, 218).getRGB());
 		for(IRenderer renderer : renderers.keySet()) {
 			
 			ScreenPosition pos = renderers.get(renderer);
-			
 			renderer.renderDummy(pos);
 			
 			
@@ -69,17 +66,31 @@ public class HUDCongifScreen extends GuiScreen {
 
             this.hovered = mouseX >= absoluteX && mouseX <= absoluteX + renderer.getWidth() && mouseY >= absoluteY && mouseY <= absoluteY + renderer.getHeight();
 
+            
+
+            if(draggedmodule != renderer && draggedmodule != null) {
+    			this.drawHollowRect(pos.getAbsoluteX(), pos.getAbsoluteY(), renderer.getWidth(), renderer.getHeight(), new Color(147, 82, 244).getRGB());
+            	continue;
+            } else {
+    			this.drawHollowRect(pos.getAbsoluteX(), pos.getAbsoluteY(), renderer.getWidth(), renderer.getHeight(), new Color(147, 150, 244).getRGB());
+            }
+            
+
             if (this.hovered) {
                 if (dragged) {
                     pos.setAbsolute(pos.getAbsoluteX() + mouseX - this.prevX, pos.getAbsoluteY() + mouseY - this.prevY);
 
+                    draggedmodule = renderer;            
+                    
                     adjustBounds(renderer, pos);
 
                     this.prevX = mouseX;
                     this.prevY = mouseY;
+        			
+                    continue;
+
                 }
             }
-			
 			
 			this.drawHollowRect(pos.getAbsoluteX(), pos.getAbsoluteY(), renderer.getWidth(), renderer.getHeight(), new Color(147, 82, 244).getRGB());
 			
@@ -174,6 +185,7 @@ public class HUDCongifScreen extends GuiScreen {
     protected void mouseReleased(int mouseX, int mouseY, int state) {
 
         dragged = false;
+        draggedmodule = null;
 
         super.mouseReleased(mouseX, mouseY, state);
     }

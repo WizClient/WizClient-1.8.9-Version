@@ -4,6 +4,8 @@ import com.google.common.base.Predicate;
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
 
+import WizClient.util.notifications.NotificationManager;
+
 import java.awt.Color;
 import java.util.Collection;
 import java.util.List;
@@ -361,6 +363,8 @@ public class GuiIngame extends Gui
         {
             this.overlayPlayerList.updatePlayerList(false);
         }
+        
+        NotificationManager.render();
 
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
         GlStateManager.disableLighting();

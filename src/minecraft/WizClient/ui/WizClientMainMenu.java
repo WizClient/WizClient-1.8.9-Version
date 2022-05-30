@@ -16,8 +16,11 @@ import com.mojang.realmsclient.dto.PlayerInfo;
 
 import WizClient.Client;
 import WizClient.ui.auth.AltManagerGui;
+import WizClient.util.GuiUtils;
 import WizClient.util.HeadUtil;
+import WizClient.util.RoundedButton;
 import WizClient.util.UnicodeFontRenderer;
+import WizClient.util.guiUtils2;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.Gui;
@@ -40,8 +43,13 @@ public class WizClientMainMenu extends GuiScreen {
 	
 	private ResourceLocation buttonTexture = new ResourceLocation("WizClient/gui/Button.png");
 	private ResourceLocation MainIcon = new ResourceLocation("WizClient/gui/clear.png");
-
+	
 	private static UnicodeFontRenderer ufr;
+	
+	public ResourceLocation LOGO = new ResourceLocation("WizClient/icon_2.png");
+	
+	Color color;
+	Color colorFont = new Color(255, 255, 255,255);
 	
 	@Override
 	public void drawScreen(int mouseX, int mouseY, float partialTicks) {
@@ -52,11 +60,29 @@ public class WizClientMainMenu extends GuiScreen {
 		GlStateManager.pushMatrix();
 		GlStateManager.disableLighting();
 		GlStateManager.disableFog();
-        
 		
-		HeadUtil.drawPlayerHead(mc.getSession().getUsername(), this.width - this.fontRendererObj.getStringWidth(mc.getSession().getUsername()) - 30, 5, 16);
-		ufr.drawString(mc.getSession().getUsername(), this.width - this.fontRendererObj.getStringWidth(mc.getSession().getUsername()) - 10, 7, -1);
+		//guiUtils2.drawRoundOutline(8, 7, (int) ((float)36 + ufr.getWidth(mc.getSession().getUsername())), 23, 4f, 1.0f, color.getRGB());
+		HeadUtil.drawPlayerHead(mc.getSession().getUsername(), this.width - ufr.getStringWidth(mc.getSession().getUsername()) - 40, 5, 16);
+		ufr.drawString(mc.getSession().getUsername(), this.width - ufr.getStringWidth(mc.getSession().getUsername()) - 20, 7, -1);
+		
+		
+		if(mc.getSession().getUsername() != null){
+            boolean hovering = mouseX >= this.width - ufr.getStringWidth(mc.getSession().getUsername()) - 47 && mouseX <= this.width + ufr.getWidth(mc.getSession().getUsername()) - 50 && mouseY <= 23;
+            if(hovering){
+            	
+                //color = new Color(191, 191, 191, 65);
+            	color = Color.blue;
+            			
+            			
+            }else{
+            	color = Color.WHITE;
 
+            }
+            guiUtils2.drawRoundOutline(this.width - ufr.getStringWidth(mc.getSession().getUsername()) - 47, 3, (int) ((float) this.width -  ufr.getWidth(mc.getSession().getUsername())), 23, 4f, 1.0f, color.getRGB());
+        }
+		
+		
+		
 		GlStateManager.popMatrix();
 		Gui.drawRect(0, 0, 220, this.height, new Color(0, 0, 0, 170).getRGB());
 		

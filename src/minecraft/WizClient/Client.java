@@ -7,6 +7,9 @@ import WizClient.gui.SplashProgress;
 import WizClient.gui.hud.HUDManager;
 import WizClient.mods.ModInstances;
 import WizClient.mods.impl.ModFullBright;
+import WizClient.util.notifications.Notification;
+import WizClient.util.notifications.NotificationManager;
+import WizClient.util.notifications.NotificationType;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.src.Config;
@@ -60,6 +63,7 @@ public class Client {
 		
 		if(Minecraft.getMinecraft().gameSettings.CLIENT_GUI_MOD_TOGGLE_FULLBRIGHT.isPressed()) {
 			ModInstances.getModFullBright().ToogleMod();
+			NotificationManager.show(new Notification(NotificationType.INFO, "Fullbright: ON", "", 1));
 
 		}
 	}
@@ -162,3 +166,5 @@ protected void writePing(int p_175245_1_, int p_175245_2_, int p_175245_3_, Netw
      
 }
 */
+
+//Minecraft.getMinecraft().gameSettings.saturation = 1000F;

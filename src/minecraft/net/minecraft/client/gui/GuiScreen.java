@@ -58,10 +58,10 @@ public abstract class GuiScreen extends Gui implements GuiYesNoCallback
     protected RenderItem itemRender;
 
     /** The width of the screen object. */
-    public int width;
+    public static int width;
 
     /** The height of the screen object. */
-    public int height;
+    public static int height;
     protected List<GuiButton> buttonList = Lists.<GuiButton>newArrayList();
     protected List<GuiLabel> labelList = Lists.<GuiLabel>newArrayList();
     public boolean allowUserInput;
@@ -698,11 +698,14 @@ public abstract class GuiScreen extends Gui implements GuiYesNoCallback
     {
         if (id == 31102009)
         {
+        	
             if (result)
             {
+
+            	
                 this.openWebLink(this.clickedLinkURI);
             }
-
+            
             this.clickedLinkURI = null;
             this.mc.displayGuiScreen(this);
         }
@@ -710,6 +713,7 @@ public abstract class GuiScreen extends Gui implements GuiYesNoCallback
 
     private void openWebLink(URI url)
     {
+    	
         try
         {
             Class<?> oclass = Class.forName("java.awt.Desktop");
