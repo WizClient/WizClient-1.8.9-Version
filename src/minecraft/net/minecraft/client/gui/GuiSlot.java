@@ -219,6 +219,34 @@ public abstract class GuiSlot
         }
     }
 
+    
+    protected void customDrawSelectionBox(int p_148120_1_, int p_148120_2_, int mouseXIn, int mouseYIn) {
+    	int i = this.getSize();
+        Tessellator tessellator = Tessellator.getInstance();
+        WorldRenderer worldrenderer = tessellator.getWorldRenderer();
+
+
+            int k = p_148120_2_ + 0 * this.slotHeight + this.headerPadding;
+            int l = this.slotHeight - 4;
+
+            
+
+            if (!(this instanceof GuiResourcePackList) || k >= this.top - this.slotHeight && k <= this.bottom)
+            {
+            	
+                this.drawSlot(0, p_148120_1_, k, l, mouseXIn, mouseYIn);
+            }
+        
+    }
+    
+    public void drawServerInDirect(int mouseXIn, int mouseYIn, float p_148128_3_) {
+    	int k = this.left + this.width / 2 - this.getListWidth() / 2 + 2;
+        int l = this.top + 4 - (int)this.amountScrolled;
+    	
+    	this.customDrawSelectionBox(k, l, mouseXIn, mouseYIn);
+    	//this.drawSelectionBox(k, l, mouseXIn, mouseYIn);
+    }
+    
     public void drawScreen(int mouseXIn, int mouseYIn, float p_148128_3_)
     {
         if (this.field_178041_q)
@@ -233,7 +261,8 @@ public abstract class GuiSlot
             GlStateManager.disableFog();
             Tessellator tessellator = Tessellator.getInstance();
             WorldRenderer worldrenderer = tessellator.getWorldRenderer();
-            this.drawContainerBackground(tessellator);
+            //transparent screen
+            //this.drawContainerBackground(tessellator);
             int k = this.left + this.width / 2 - this.getListWidth() / 2 + 2;
             int l = this.top + 4 - (int)this.amountScrolled;
 
@@ -252,6 +281,7 @@ public abstract class GuiSlot
             GlStateManager.disableAlpha();
             GlStateManager.shadeModel(7425);
             GlStateManager.disableTexture2D();
+            /*
             worldrenderer.begin(7, DefaultVertexFormats.POSITION_TEX_COLOR);
             worldrenderer.pos((double)this.left, (double)(this.top + i1), 0.0D).tex(0.0D, 1.0D).color(0, 0, 0, 0).endVertex();
             worldrenderer.pos((double)this.right, (double)(this.top + i1), 0.0D).tex(1.0D, 1.0D).color(0, 0, 0, 0).endVertex();
@@ -264,6 +294,7 @@ public abstract class GuiSlot
             worldrenderer.pos((double)this.right, (double)(this.bottom - i1), 0.0D).tex(1.0D, 0.0D).color(0, 0, 0, 0).endVertex();
             worldrenderer.pos((double)this.left, (double)(this.bottom - i1), 0.0D).tex(0.0D, 0.0D).color(0, 0, 0, 0).endVertex();
             tessellator.draw();
+            */
             int j1 = this.func_148135_f();
 
             if (j1 > 0)

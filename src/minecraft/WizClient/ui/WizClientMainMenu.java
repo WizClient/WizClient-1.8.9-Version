@@ -78,7 +78,8 @@ public class WizClientMainMenu extends GuiScreen {
             	color = Color.WHITE;
 
             }
-            guiUtils2.drawRoundOutline(this.width - ufr.getStringWidth(mc.getSession().getUsername()) - 47, 3, (int) ((float) this.width -  ufr.getWidth(mc.getSession().getUsername())), 23, 4f, 1.0f, color.getRGB());
+            //guiUtils2.drawRoundOutline(this.width - ufr.getStringWidth(mc.getSession().getUsername()) - 47, 3, (int) ((float) this.width -  ufr.getWidth(mc.getSession().getUsername())), 23, 4f, 1.0f, color.getRGB());
+            guiUtils2.drawRoundOutline(this.width - ufr.getStringWidth(mc.getSession().getUsername()) - 45, 3, this.width - 5, 25, 4f, 1.0f, color.getRGB());
         }
 		
 		

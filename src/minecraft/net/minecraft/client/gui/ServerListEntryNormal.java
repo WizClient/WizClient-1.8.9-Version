@@ -47,7 +47,6 @@ public class ServerListEntryNormal implements GuiListExtended.IGuiListEntry
 
     public void drawEntry(int slotIndex, int x, int y, int listWidth, int slotHeight, int mouseX, int mouseY, boolean isSelected)
     {
-    	
         if (!this.server.field_78841_f)
         {
             this.server.field_78841_f = true;
@@ -185,6 +184,7 @@ public class ServerListEntryNormal implements GuiListExtended.IGuiListEntry
 
         if (this.mc.gameSettings.touchscreen || isSelected)
         {
+        	System.out.println("HAHHA");
             this.mc.getTextureManager().bindTexture(SERVER_SELECTION_BUTTONS);
             Gui.drawRect(x, y, x + 32, y + 32, -1601138544);
             GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);

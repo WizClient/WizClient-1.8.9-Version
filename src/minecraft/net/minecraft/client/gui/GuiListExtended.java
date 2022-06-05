@@ -30,6 +30,8 @@ public abstract class GuiListExtended extends GuiSlot
 
     protected void drawSlot(int entryID, int p_180791_2_, int p_180791_3_, int p_180791_4_, int mouseXIn, int mouseYIn)
     {
+    	
+    	System.out.println(this.getListEntry(entryID).getClass());
         this.getListEntry(entryID).drawEntry(entryID, p_180791_2_, p_180791_3_, this.getListWidth(), p_180791_4_, mouseXIn, mouseYIn, this.getSlotIndexFromScreenCoords(mouseXIn, mouseYIn) == entryID);
     }
 

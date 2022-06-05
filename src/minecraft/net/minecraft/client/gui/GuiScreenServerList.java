@@ -6,10 +6,13 @@ import java.util.List;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.ThreadPoolExecutor;
 
+import javax.lang.model.element.TypeElement;
+
 import org.lwjgl.input.Keyboard;
 
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
 
+import WizClient.util.ServerDataFeatured;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ServerData;
 import net.minecraft.client.renderer.GlStateManager;
@@ -19,13 +22,13 @@ import net.minecraft.util.EnumChatFormatting;
 public class GuiScreenServerList extends GuiScreen
 {
 	
-	
+	private ServerSelectionList serverListSelector;
 	
     private final GuiScreen field_146303_a;
     private final ServerData field_146301_f;
     private GuiTextField field_146302_g;
     
-    private ServerData server;
+    private ServerDataFeatured server;
 
     public GuiScreenServerList(GuiScreen p_i1031_1_, ServerData p_i1031_2_)
     {
@@ -102,11 +105,10 @@ public class GuiScreenServerList extends GuiScreen
         {
             this.actionPerformed((GuiButton)this.buttonList.get(0));
         }
+                
+        server = new ServerDataFeatured("", this.field_146302_g.getText());
         
-        
-        System.out.println(this.field_146302_g.getText());
-        
-        
+        System.out.println(server.serverMOTD);
         
     }
 
@@ -319,6 +321,11 @@ public class GuiScreenServerList extends GuiScreen
     /**
      * Draws the screen and all the components in it. Args : mouseX, mouseY, renderPartialTicks
      */
+    
+    private void drawActualServer() {
+    	this.drawRect(400, 400, 40, 400, -1);
+    }
+    
     public void drawScreen(int mouseX, int mouseY, float partialTicks)
     {
     	
@@ -332,8 +339,16 @@ public class GuiScreenServerList extends GuiScreen
     	
     	//Gui.drawModalRectWithCustomSizedTexture(x, y, 96.0F, 0.0F, 32, 32, 256.0F, 256.0F);
     	
-    	this.drawCenteredString(this.fontRendererObj, this.field_146302_g.getText(), this.width / 2, 40, 16777215);
+    	//this.serverListSelector.drawServerInDirect(mouseX, mouseY, partialTicks);
+    	//this.drawActualServer();
+    	
+    	//this.drawCenteredString(this.fontRendererObj, this.field_146302_g.getText(), this.width / 2, 90, 16777215);
+        //this.drawCenteredString(this.fontRendererObj, I18n.format("selectServer.direct", new Object[0]), this.width / 2, 10, 16777215);
+
+    	//this.drawCenteredString(this.fontRendererObj, this.field_146302_g.getText(), this.width / 2, 40, 16777215);
         this.drawDefaultBackground();
+        
+        
         this.drawCenteredString(this.fontRendererObj, I18n.format("selectServer.direct", new Object[0]), this.width / 2, 20, 16777215);
         this.drawString(this.fontRendererObj, I18n.format("addServer.enterIp", new Object[0]), this.width / 2 - 100, 100, 10526880);
         this.field_146302_g.drawTextBox();

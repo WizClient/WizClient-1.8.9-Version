@@ -1,12 +1,16 @@
 package net.minecraft.client.gui.inventory;
 
+import java.io.IOException;
+import java.util.Set;
+
+import org.lwjgl.input.Keyboard;
+import org.lwjgl.opengl.GL11;
+
 import com.google.common.collect.Sets;
 
 import WizClient.event.impl.RenderEvent;
-
-import java.io.IOException;
-import java.util.Set;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
@@ -20,7 +24,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
-import org.lwjgl.input.Keyboard;
 
 public abstract class GuiContainer extends GuiScreen
 {
@@ -198,6 +201,10 @@ public abstract class GuiContainer extends GuiScreen
             ItemStack itemstack1 = this.theSlot.getStack();
             this.renderToolTip(itemstack1, mouseX, mouseY);
         }
+        
+        
+       
+    	
 
         GlStateManager.enableLighting();
         GlStateManager.enableDepth();

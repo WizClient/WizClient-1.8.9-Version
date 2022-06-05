@@ -12,6 +12,7 @@ import WizClient.mods.impl.ModItemCounter;
 import WizClient.mods.impl.ModKeyStrokes;
 import WizClient.mods.impl.ModMemmory;
 import WizClient.mods.impl.ModPing;
+import WizClient.mods.impl.ModPotionStatus;
 import WizClient.mods.impl.ModTargetHUD;
 import WizClient.mods.impl.ModDirection.ModDirection;
 import WizClient.mods.impl.ToggleSprintAndSneak.ModToggleSneak;
@@ -34,6 +35,7 @@ public class ModInstances {
 	private static ModItemCounter modItemCounter;
 	private static ModFullBright modFullBright;
 	private static ModBlockOverlay modBlockOverlay;
+	private static ModPotionStatus modPotionStatus;
 	
 	public static void register(HUDManager api) {
 		
@@ -82,6 +84,13 @@ public class ModInstances {
 		modBlockOverlay = new ModBlockOverlay();
 		api.register(modBlockOverlay);
 
+		modPotionStatus = new ModPotionStatus();
+		api.register(modPotionStatus);
+		
+	}
+	
+	public static ModPotionStatus getModPotionStatus() {
+		return modPotionStatus;
 	}
 	
 	public static ModFullBright getModFullBright() {
