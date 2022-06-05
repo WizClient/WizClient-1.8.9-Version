@@ -1,2 +1,2 @@
 # WizClient-1.8.9-Version
-Minecraft 1.8.9 PVP client source code
+Minecraft 1.8.9 PVP client source code (very wip and bugy)
