@@ -1,8 +1,15 @@
+# IMPORTANT INFORMATION
+
+
+## I am currently working on changing the client into a mixin client, with the mixin of [spongepowered](https://github.com/SpongePowered). There will be no commit until I switch to a mixin client. This will take some time, as I need to learn the mixin and convert the project. Thanks for your understanding :heart:
+
+
+---
+
 ### WizClient-1.8.9-Version
 Minecraft 1.8.9 PVP client source code (very wip and bugy)
 
 :warning: **This client is at the beginning of its development, it is ugly, there is no interface, it is not very optimized, there are many bugs. Be indulgent**
-
 
 
 # How to install (boring):
